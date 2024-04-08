@@ -1,3 +1,27 @@
 spring:
   main:
     banner-mode: off
+
+    datasource:
+      url: jdbc:mysql://localhost:3306/constraction_project
+      username: root
+      password: a2009300babych
+      #spring.jpa.show-sql: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+
+  sql:
+    init:
+      data-locations:
+        classpath: db/data.sql
+      schema-locations:
+        classpath: db/schema.sql
+      mode: always
+
+
+server:
+  port: 8081
