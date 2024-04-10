@@ -12,7 +12,7 @@ import java.util.UUID;
 @Setter
 @Table(name = "address")
 @NoArgsConstructor
-public class Adress {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

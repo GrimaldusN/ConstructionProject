@@ -5,12 +5,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<dependency>
+	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0</version>
-		<type>pom</type>
-	</dependency>
+		<version>3.2.3</version>
+	</parent>
 
 
 	<groupId>com.example</groupId>
@@ -35,10 +34,10 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.liquibase</groupId>-->
+<!--			<artifactId>liquibase-core</artifactId>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>mysql</groupId>

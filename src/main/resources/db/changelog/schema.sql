@@ -1,3 +1,22 @@
+drop table if exists authorities;
+
+drop table if exists material_quantity;
+
+drop table if exists material;
+
+drop table if exists users;
+
+drop table if exists roles;
+
+drop table if exists work_process;
+
+drop table if exists builder;
+
+drop table if exists building;
+
+drop table if exists address;
+
+drop table if exists owner;
 
 
 CREATE TABLE address (
@@ -38,21 +57,21 @@ CREATE TABLE users (
 );
 
 CREATE TABLE building (
-                          id BINARY(16) PRIMARY KEY,
-                          address_id BINARY(16) NOT NULL,
-                          cost DOUBLE NOT NULL,
-                          owner_id BINARY(16),
-                          FOREIGN KEY (address_id) REFERENCES address(id),
-                          FOREIGN KEY (owner_id) REFERENCES owner(id)
+    id BINARY(16) PRIMARY KEY,
+    address_id BINARY(16) NOT NULL,
+    cost DOUBLE NOT NULL,
+    owner_id BINARY(16),
+    FOREIGN KEY (address_id) REFERENCES address(id),
+    FOREIGN KEY (owner_id) REFERENCES owner(id)
 );
 
 CREATE TABLE builder (
-                         id BINARY(16) PRIMARY KEY,
-                         first_Name VARCHAR(255) NOT NULL,
-                         last_name VARCHAR(255) NOT NULL,
-                         tell_Number INT,
-                         building_id BINARY(16),
-                         FOREIGN KEY (building_id) REFERENCES Building(id)
+    id BINARY(16) PRIMARY KEY,
+    first_Name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    tell_Number VARCHAR(20) NOT NULL ,
+    building_id BINARY(16),
+    FOREIGN KEY (building_id) REFERENCES Building(id)
 );
 
 
