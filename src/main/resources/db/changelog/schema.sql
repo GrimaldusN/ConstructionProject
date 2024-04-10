@@ -1,3 +1,5 @@
+
+
 CREATE TABLE address (
     id BINARY(16) PRIMARY KEY,
     street VARCHAR(255) NOT NULL,
@@ -14,12 +16,6 @@ CREATE TABLE roles (
     role_Name VARCHAR(255)
 );
 
-CREATE TABLE builder (
-    id BINARY(16) PRIMARY KEY,
-    first_Name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    tell_Number VARCHAR(20)
-);
 
 CREATE TABLE owner (
     id BINARY(16) PRIMARY KEY,
@@ -41,21 +37,31 @@ CREATE TABLE users (
     FOREIGN KEY (roles_id) REFERENCES roles (id)
 );
 
+CREATE TABLE building (
+                          id BINARY(16) PRIMARY KEY,
+                          address_id BINARY(16) NOT NULL,
+                          cost DOUBLE NOT NULL,
+                          owner_id BINARY(16),
+                          FOREIGN KEY (address_id) REFERENCES address(id),
+                          FOREIGN KEY (owner_id) REFERENCES owner(id)
+);
+
+CREATE TABLE builder (
+                         id BINARY(16) PRIMARY KEY,
+                         first_Name VARCHAR(255) NOT NULL,
+                         last_name VARCHAR(255) NOT NULL,
+                         tell_Number INT,
+                         building_id BINARY(16),
+                         FOREIGN KEY (building_id) REFERENCES Building(id)
+);
+
+
 CREATE TABLE work_process (
     id BINARY(16) PRIMARY KEY,
     action VARCHAR(255),
     cost DOUBLE,
     builder_id BINARY(16),
     FOREIGN KEY (builder_id) REFERENCES builder (id)
-);
- 
- CREATE TABLE building (
-    id BINARY(16) PRIMARY KEY,
-    address_id BINARY(16) NOT NULL,
-    cost DOUBLE NOT NULL,
-    owner_id BINARY(16),
-    FOREIGN KEY (address_id) REFERENCES address(id),
-    FOREIGN KEY (owner_id) REFERENCES owner(id)
 );
 
 CREATE TABLE material_quantity (

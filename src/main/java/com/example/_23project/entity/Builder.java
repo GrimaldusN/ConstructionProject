@@ -1,5 +1,6 @@
 package com.example._23project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,10 @@ public class Builder extends Owner {
 
     @Column(name = "tell_Number")
     private int tellNumber;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "building_id")
+    private Building building;
+
 }
