@@ -1,5 +1,6 @@
 package com.example._23project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -26,6 +27,7 @@ public class Autauthorities {
     @Column(name = "authority_Name")
     private String authorityName;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "authorities")
     private Set<Role> roles;
 

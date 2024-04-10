@@ -1,5 +1,6 @@
 package com.example._23project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class WorkProcess {
     @Column(name = "cost")
     private double cost;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "builder_id")
     private Builder builder;
