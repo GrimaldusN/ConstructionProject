@@ -1,18 +1,12 @@
 package com.example._23project.entity;
 
-import com.example._23project.entity.Adress;
-import com.example._23project.entity.Builder;
-import com.example._23project.entity.Material;
-import com.example._23project.entity.Owner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -34,7 +28,7 @@ public class Building {
     @JsonIgnore
     @OneToOne
     @JoinColumn(name = "address_id")
-    private Adress address;
+    private Address address;
 
     @JsonIgnore
     @ManyToOne

@@ -1,17 +1,9 @@
 spring:
 
-  application:
-    banner-mode: off
-
   datasource:
     url: jdbc:mysql://localhost:3306/constraction_project
     username: root
     password: a2009300babych
-    data-source-properties:
-      data:
-        - classpath:db/changelog/data.sql
-      schema:
-        - classpath:db/changelog/schema.sql
 
   jpa:
     hibernate:
@@ -22,9 +14,10 @@ spring:
   sql:
     init:
       mode: always
+      schema-locations: classpath:db/changelog/schema.sql
+      data-locations: classpath:db/changelog/data.sql
 
-  liquibase:
-    enabled: true
+
 
 server:
   port: 8080
