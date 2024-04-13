@@ -7,19 +7,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/address")
 public class AddressController {
-    private final AddressService adressService;
+    private final AddressService addressService;
 
-    public AddressController(AddressService adressService) {
-        this.adressService = adressService;
+    public AddressController(AddressService addressService) {
+        this.addressService = addressService;
     }
 
     @GetMapping("/get/{id}")
     public Address getAddressById(@PathVariable("id") String id){
-        return adressService.getAddressById(id);
+        return addressService.getAddressById(id);
+    }
+
+    @GetMapping("/remove/{id}")
+    public String removeAddressById(@PathVariable("id") String id){
+        return addressService.removeAddressById(id);
     }
 }
