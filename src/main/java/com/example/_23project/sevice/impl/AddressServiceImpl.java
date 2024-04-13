@@ -17,10 +17,20 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address getAddressById(String id) {
-        Address address = addressRepository.getById(UUID.fromString(id));
+        Address address = addressRepository.getAddressById(UUID.fromString(id));
         if (address == null){
             throw new AddressNotExistException(ErrorMessage.ADDRESS_NOT_EXIST);
         }
         return address;
     }
+
+    @Override
+    public String removeAddressById(String id) {
+        Address address = addressRepository.getAddressById(UUID.fromString(id));
+        if (address == null){
+            throw new AddressNotExistException(ErrorMessage.ADDRESS_NOT_EXIST);
+        } address = null;
+        return "Address removed";
+    }
+
 }
