@@ -2,10 +2,9 @@ package com.example._23project.controller;
 
 import com.example._23project.entity.Building;
 import com.example._23project.sevice.BuildingService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequestMapping("/building")
@@ -21,8 +20,8 @@ public class BuildingController {
         return buildingService.getBuildingById(id);
     }
 
-    @GetMapping("/remove/{id}")
-    public String removeBuildingById(@PathVariable("id") String id){
-        return buildingService.removeBuildingById(id);
+    @DeleteMapping ("/delete/{id}")
+    public String deleteBuildingById(@PathVariable("id") String id){
+        return buildingService.deleteBuildingById(id);
     }
 }

@@ -7,4 +7,5 @@ import java.util.UUID;
 
 public interface BuildingRepository extends JpaRepository<Building, UUID> {
     Building getBuildingById(UUID id);
+    String deleteBuildingById(UUID id);
 }

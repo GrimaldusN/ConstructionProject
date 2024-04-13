@@ -29,12 +29,12 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
-    public String removeBuildingById(String id) {
-        Building building = buildingRepository.getBuildingById(UUID.fromString(id));
-        if (building == null){
+    public String deleteBuildingById(String id) {
+        if (buildingRepository.getBuildingById(UUID.fromString(id)) == null){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
-        } building = null;
-        return "Building removed";
+        }
+        buildingRepository.deleteBuildingById(UUID.fromString(id));
+        return "Building deleted";
     }
 
 }

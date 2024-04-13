@@ -25,11 +25,10 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public String removeAddressById(String id) {
-        Address address = addressRepository.getAddressById(UUID.fromString(id));
-        if (address == null){
+    public String deleteAddressById(String id) {
+        if (addressRepository.getAddressById(UUID.fromString(id)) == null){
             throw new AddressNotExistException(ErrorMessage.ADDRESS_NOT_EXIST);
-        } address = null;
+        } addressRepository.deleteAddressById(UUID.fromString(id));
         return "Address removed";
     }
 
