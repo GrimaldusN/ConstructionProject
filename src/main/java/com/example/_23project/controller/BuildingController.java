@@ -1,7 +1,10 @@
 package com.example._23project.controller;
 
+import com.example._23project.dto.BuildingAfterCreationDto;
+import com.example._23project.dto.BuildingCreateDto;
 import com.example._23project.entity.Building;
 import com.example._23project.sevice.BuildingService;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
@@ -23,5 +26,10 @@ public class BuildingController {
     @DeleteMapping ("/delete/{id}")
     public String deleteBuildingById(@PathVariable("id") String id){
         return buildingService.deleteBuildingById(id);
+    }
+
+    @PostMapping("/create")
+    public BuildingAfterCreationDto createBuilding(@RequestBody BuildingCreateDto buildingCreateDto){
+        return buildingService.createBuilding(buildingCreateDto);
     }
 }
