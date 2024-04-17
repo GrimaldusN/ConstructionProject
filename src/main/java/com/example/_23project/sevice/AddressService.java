@@ -7,5 +7,5 @@ import java.util.UUID;
 public interface AddressService {
     Address getAddressById(String id);
 
-    String deleteAddressById(String id);
+    void deleteAddressById(String id);
 }

@@ -24,8 +24,8 @@ public class BuildingController {
     }
 
     @DeleteMapping ("/delete/{id}")
-    public String deleteBuildingById(@PathVariable("id") String id){
-        return buildingService.deleteBuildingById(id);
+    public void deleteBuildingById(@PathVariable("id") String id){
+        buildingService.deleteBuildingById(id);
     }
 
     @PostMapping("/create")

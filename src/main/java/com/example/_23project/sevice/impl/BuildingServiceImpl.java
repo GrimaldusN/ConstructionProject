@@ -11,6 +11,7 @@ import com.example._23project.sevice.BuildingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,17 +30,17 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
-    public String deleteBuildingById(String id) {
+    public void deleteBuildingById(String id) {
         if (buildingRepository.findById(UUID.fromString(id)).isEmpty()){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
         }
         buildingRepository.deleteBuildingById(UUID.fromString(id));
-        return "Building deleted";
+        System.out.println("Building is deleted");
     }
 
     @Override
     public BuildingAfterCreationDto createBuilding(BuildingCreateDto buildingCreateDto) {
-        Building building = buildingRepository.findByBuildingDescription(buildingCreateDto.getAddress());
+        List<Building> building = buildingRepository.findByBuildingDescription(buildingCreateDto.getAddress());
         if (building != null){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
         }
