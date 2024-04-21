@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public interface AddressService {
     Address getAddressById(String id);
+    Address getAddressByName(String addressName);
 
     void deleteAddressById(String id);
     AddressAfterCreationDto createAddress(AddressCreateDto addressCreateDto);

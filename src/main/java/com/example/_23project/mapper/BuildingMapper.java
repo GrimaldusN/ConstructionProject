@@ -14,11 +14,11 @@ public interface BuildingMapper {
     @Mapping(target = "address.street", source = "addressName")
     @Mapping(target = "owner.firstName", source = "ownerName")
 
-    @Mapping(target = "buildingId", ignore = true)
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "materials", ignore = true)
     @Mapping(target = "builders", ignore = true)
     Building toEntity(BuildingCreateDto buildingCreateDto);
 
-    @Mapping(target ="buildingId", source = "buildingId")
+    @Mapping(target ="buildingId", source = "id")
     BuildingAfterCreationDto toDto(Building buildingAfterCreation);
 }

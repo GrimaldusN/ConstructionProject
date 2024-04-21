@@ -18,7 +18,7 @@ public class Builder extends Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    private UUID id;
+    private UUID builderId;
 
     @Column(name = "first_Name")
     private String firstName;
