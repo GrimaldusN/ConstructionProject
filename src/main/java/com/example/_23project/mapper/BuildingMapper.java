@@ -20,5 +20,7 @@ public interface BuildingMapper {
     Building toEntity(BuildingCreateDto buildingCreateDto);
 
     @Mapping(target ="buildingId", source = "id")
+
+    @Mapping(target = "status", ignore = true)
     BuildingAfterCreationDto toDto(Building buildingAfterCreation);
 }
