@@ -17,5 +17,7 @@ public interface AddressMapper {
     Address toEntity(AddressCreateDto addressCreateDto);
 
     @Mapping(target = "addressId", source = "id")
+
+    @Mapping(target = "status", ignore = true)
     AddressAfterCreationDto toDto(Address addressAfterCreation);
 }
