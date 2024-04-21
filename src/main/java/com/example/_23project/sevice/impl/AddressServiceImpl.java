@@ -3,10 +3,8 @@ package com.example._23project.sevice.impl;
 import com.example._23project.dto.AddressAfterCreationDto;
 import com.example._23project.dto.AddressCreateDto;
 import com.example._23project.entity.Address;
-import com.example._23project.entity.Building;
 import com.example._23project.exception.AddressAlreadyExistException;
 import com.example._23project.exception.AddressNotExistException;
-import com.example._23project.exception.BuildingNotExistException;
 import com.example._23project.exception.ErrorMessage;
 import com.example._23project.mapper.AddressMapper;
 import com.example._23project.repository.AddressRepository;
@@ -33,12 +31,27 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address getAddressByName(String addressName) {
-        Address address = addressRepository.getAddressByName(addressName);
+    public Address findAddressByStreet(String addressName) {
+        Address address = addressRepository.findAddressByStreet(addressName);
         if (address != null){
             throw new AddressAlreadyExistException(ErrorMessage.ADDRESS_ALREADY_EXIST);
         }
         return address;
+    }
+
+    @Override
+    public String updateAddressByStreet(String street, String newStreet) {
+        Address address = addressRepository.findAddressByStreet(street);
+        if(address == null) {
+            throw new AddressNotExistException(ErrorMessage.ADDRESS_NOT_EXIST);
+        } else {
+            if(address.getStreet().equals(newStreet)) {
+                throw new AddressAlreadyExistException(ErrorMessage.ADDRESS_ALREADY_EXIST);
+            } else {
+                address.setStreet(newStreet);
+                addressRepository.saveAndFlush(address);
+            }
+        }return "Address are corrected";
     }
 
     @Override
