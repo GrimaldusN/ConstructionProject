@@ -17,6 +17,9 @@ spring:
       schema-locations: classpath:db/changelog/schema.sql
       data-locations: classpath:db/changelog/data.sql
 
+logging:
+  level:
+    root: warn
 
 
 server:
