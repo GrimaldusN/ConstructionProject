@@ -1,7 +1,7 @@
 package com.example._23project.sevice.impl;
 
-import com.example._23project.dto.BuildingAfterCreationDto;
-import com.example._23project.dto.BuildingCreateDto;
+import com.example._23project.dto.Building.BuildingAfterCreationDto;
+import com.example._23project.dto.Building.BuildingCreateDto;
 import com.example._23project.entity.Address;
 import com.example._23project.entity.Building;
 import com.example._23project.exception.BuildingAlreadyExistException;
@@ -59,7 +59,7 @@ public class BuildingServiceImpl implements BuildingService {
         }
 
         String addressName = buildingCreateDto.getAddressName();
-        Address address = addressRepository.getAddressByName(addressName);
+        Address address = addressRepository.findAddressByStreet(addressName);
         Building entity = buildingMapper.toEntity(buildingCreateDto);
         entity.setAddress(address);
         Building buildingAfterCreation = buildingRepository.save(entity);

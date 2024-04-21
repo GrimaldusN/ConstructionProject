@@ -1,7 +1,7 @@
 package com.example._23project.sevice.impl;
 
-import com.example._23project.dto.AddressAfterCreationDto;
-import com.example._23project.dto.AddressCreateDto;
+import com.example._23project.dto.Address.AddressAfterCreationDto;
+import com.example._23project.dto.Address.AddressCreateDto;
 import com.example._23project.entity.Address;
 import com.example._23project.exception.AddressAlreadyExistException;
 import com.example._23project.exception.AddressNotExistException;
@@ -69,8 +69,8 @@ public class AddressServiceImpl implements AddressService {
             throw new AddressAlreadyExistException(ErrorMessage.ADDRESS_ALREADY_EXIST);
         }
         Address entity = addressMapper.toEntity(addressCreateDto);
-        Address buildingAfterCreation = addressRepository.save(entity);
-        return addressMapper.toDto(buildingAfterCreation);
+        Address addressAfterCreation = addressRepository.save(entity);
+        return addressMapper.toDto(addressAfterCreation);
     }
 
 }

@@ -1,13 +1,10 @@
 package com.example._23project.controller;
 
-import com.example._23project.dto.BuildingAfterCreationDto;
-import com.example._23project.dto.BuildingCreateDto;
+import com.example._23project.dto.Building.BuildingAfterCreationDto;
+import com.example._23project.dto.Building.BuildingCreateDto;
 import com.example._23project.entity.Building;
 import com.example._23project.sevice.BuildingService;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.web.bind.annotation.*;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequestMapping("/building")
