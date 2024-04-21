@@ -9,7 +9,8 @@ import java.util.UUID;
 
 public interface AddressRepository extends JpaRepository<Address, UUID> {
     Address getAddressById(UUID id);
-    Address getAddressByName(String addressName);
+    Address findAddressByStreet(String addressName);
     String deleteAddressById(UUID id);
+    String updateAddressByStreet(String street, String newStreet);
     List<Address> findByAddressDescription(String description);
 }
