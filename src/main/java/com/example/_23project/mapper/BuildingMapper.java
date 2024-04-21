@@ -1,7 +1,7 @@
 package com.example._23project.mapper;
 
-import com.example._23project.dto.BuildingAfterCreationDto;
-import com.example._23project.dto.BuildingCreateDto;
+import com.example._23project.dto.Building.BuildingAfterCreationDto;
+import com.example._23project.dto.Building.BuildingCreateDto;
 import com.example._23project.entity.Building;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
