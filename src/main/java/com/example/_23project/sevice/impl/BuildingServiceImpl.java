@@ -30,6 +30,15 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
+    public Building getBuildingByAddressName(String addressName) {
+        Building building = buildingRepository.getBuildingByAddressName(addressName);
+        if (building == null){
+            throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
+        }
+        return building;
+    }
+
+    @Override
     public void deleteBuildingById(String id) {
         if (buildingRepository.findById(UUID.fromString(id)).isEmpty()){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
@@ -40,13 +49,15 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     public BuildingAfterCreationDto createBuilding(BuildingCreateDto buildingCreateDto) {
-        List<Building> building = buildingRepository.findByBuildingDescription(buildingCreateDto.getAddress());
+        List<Building> building = buildingRepository.findByBuildingDescription(buildingCreateDto.getAddressName());
         if (building != null){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
         }
+
         Building entity = buildingMapper.toEntity(buildingCreateDto);
         Building buildingAfterCreation = buildingRepository.save(entity);
         return buildingMapper.toDto(buildingAfterCreation);
     }
+
 
 }

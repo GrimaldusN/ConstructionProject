@@ -20,7 +20,7 @@ public class Building {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private UUID id;
+    private UUID buildingId;
 
     @Column(name = "cost")
     private double cost;
