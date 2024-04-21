@@ -1,5 +1,7 @@
 package com.example._23project.controller;
 
+import com.example._23project.dto.AddressAfterCreationDto;
+import com.example._23project.dto.AddressCreateDto;
 import com.example._23project.entity.Address;
 import com.example._23project.sevice.AddressService;
 import org.springframework.web.bind.annotation.*;
@@ -23,4 +25,8 @@ public class AddressController {
         addressService.deleteAddressById(id);
     }
 
+    @PostMapping("/create")
+    public AddressAfterCreationDto createAddress(@RequestBody AddressCreateDto addressCreateDto){
+        return addressService.createAddress(addressCreateDto);
+    }
 }
