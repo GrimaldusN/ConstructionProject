@@ -4,6 +4,7 @@ import com.example._23project.dto.AddressAfterCreationDto;
 import com.example._23project.dto.AddressCreateDto;
 import com.example._23project.entity.Address;
 import com.example._23project.entity.Building;
+import com.example._23project.exception.AddressAlreadyExistException;
 import com.example._23project.exception.AddressNotExistException;
 import com.example._23project.exception.BuildingNotExistException;
 import com.example._23project.exception.ErrorMessage;
@@ -32,6 +33,15 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    public Address getAddressByName(String addressName) {
+        Address address = addressRepository.getAddressByName(addressName);
+        if (address != null){
+            throw new AddressAlreadyExistException(ErrorMessage.ADDRESS_ALREADY_EXIST);
+        }
+        return address;
+    }
+
+    @Override
     public void deleteAddressById(String id) {
         if (addressRepository.getAddressById(UUID.fromString(id)) == null){
             throw new AddressNotExistException(ErrorMessage.ADDRESS_NOT_EXIST);
@@ -43,9 +53,8 @@ public class AddressServiceImpl implements AddressService {
     public AddressAfterCreationDto createAddress(AddressCreateDto addressCreateDto) {
         List<Address> address = addressRepository.findByAddressDescription(addressCreateDto.getStreet());
         if (address != null){
-            throw new AddressNotExistException(ErrorMessage.ADDRESS_NOT_EXIST);
+            throw new AddressAlreadyExistException(ErrorMessage.ADDRESS_ALREADY_EXIST);
         }
-
         Address entity = addressMapper.toEntity(addressCreateDto);
         Address buildingAfterCreation = addressRepository.save(entity);
         return addressMapper.toDto(buildingAfterCreation);

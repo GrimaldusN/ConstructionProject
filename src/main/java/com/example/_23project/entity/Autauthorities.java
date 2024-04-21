@@ -22,7 +22,7 @@ public class Autauthorities {
 
     @Id
     @Column(name = "id")
-    private UUID id;
+    private UUID authoritiesId;
 
     @Column(name = "authority_Name")
     private String authorityName;

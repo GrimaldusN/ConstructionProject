@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface AddressRepository extends JpaRepository<Address, UUID> {
     Address getAddressById(UUID id);
+    Address getAddressByName(String addressName);
     String deleteAddressById(UUID id);
     List<Address> findByAddressDescription(String description);
 }
