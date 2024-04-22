@@ -9,6 +9,8 @@ import com.example._23project.repository.OwnerRepository;
 import com.example._23project.sevice.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -30,6 +32,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public Owner findByTellNumber(int tellNumber) {
         Owner owner = ownerRepository.findByTellNumber(tellNumber);
         if (owner == null){
@@ -38,6 +41,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void deleteOwnerById(String id) {
         if (ownerRepository.getOwnerById(UUID.fromString(id)) == null){
             throw new OwnerNotExistException(ErrorMessage.OWNER_NOT_EXIST);
@@ -46,6 +50,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public String updateOwnerByTellNumber(int tellNumer, int newTellNumer) {
         Owner owner = ownerRepository.findByTellNumber(tellNumer);
         if (owner == null){
@@ -61,6 +66,7 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public OwnerAfterCreationDto createOwner(OwnerCreateDto ownerCreateDto) {
         List<Owner> owners = ownerRepository.findByOwnerDescription(ownerCreateDto.getLastName());
         if (owners != null){

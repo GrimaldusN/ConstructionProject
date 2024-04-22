@@ -11,6 +11,8 @@ import com.example._23project.repository.AddressRepository;
 import com.example._23project.sevice.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -31,6 +33,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public Address findAddressByStreet(String addressName) {
         Address address = addressRepository.findAddressByStreet(addressName);
         if (address != null){
@@ -40,6 +43,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public String updateAddressByStreet(String street, String newStreet) {
         Address address = addressRepository.findAddressByStreet(street);
         if(address == null) {
@@ -55,6 +59,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void deleteAddressById(String id) {
         if (addressRepository.getAddressById(UUID.fromString(id)) == null){
             throw new AddressNotExistException(ErrorMessage.ADDRESS_NOT_EXIST);
@@ -63,6 +68,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public AddressAfterCreationDto createAddress(AddressCreateDto addressCreateDto) {
         List<Address> address = addressRepository.findByAddressDescription(addressCreateDto.getStreet());
         if (address != null){
