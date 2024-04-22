@@ -9,6 +9,8 @@ import com.example._23project.repository.BuilderRepository;
 import com.example._23project.sevice.BuilderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +33,7 @@ public class BuilderServiceImpl implements BuilderService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public Builder findByTellNumber(int tellNumber) {
         Builder builder = builderRepository.findByTellNumber(tellNumber);
         if (builder == null){
@@ -39,6 +42,7 @@ public class BuilderServiceImpl implements BuilderService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void deleteBuilderById(String id) {
         if (builderRepository.getBuilderById(UUID.fromString(id)) == null){
             throw new BuilderNotExistException(ErrorMessage.BUILDER_NOT_EXIST);
@@ -47,6 +51,7 @@ public class BuilderServiceImpl implements BuilderService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public String updateBuilderByTellNumber(int tellNumer, int newTellNumer) {
         Builder builder = builderRepository.findByTellNumber(tellNumer);
         if (builder == null){
@@ -62,6 +67,7 @@ public class BuilderServiceImpl implements BuilderService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public BuilderAfterCreationDto createBuilder(BuilderCreateDto builderCreateDto) {
         List<Builder> builders = builderRepository.findByBuilderDescription(builderCreateDto.getLastName());
         if (builders != null){

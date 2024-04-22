@@ -13,6 +13,8 @@ import com.example._23project.repository.BuildingRepository;
 import com.example._23project.sevice.BuildingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,6 +36,7 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public Building getBuildingByAddressName(String addressName) {
         Building building = buildingRepository.getBuildingByAddressName(addressName);
         if (building == null){
@@ -43,6 +46,7 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void deleteBuildingById(String id) {
         if (buildingRepository.findById(UUID.fromString(id)).isEmpty()){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
@@ -52,6 +56,7 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public BuildingAfterCreationDto createBuilding(BuildingCreateDto buildingCreateDto) {
         List<Building> building = buildingRepository.findByBuildingDescription(buildingCreateDto.getAddressName());
         if (building != null){
