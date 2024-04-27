@@ -1,93 +1,52 @@
 drop table if exists authorities;
 
-drop table if exists material_quantity;
-
-drop table if exists material;
-
 drop table if exists users;
 
 drop table if exists roles;
 
 drop table if exists work_process;
 
-drop table if exists builder;
-
 drop table if exists building;
-
-drop table if exists address;
 
 drop table if exists owner;
 
-
-CREATE TABLE address (
-    id BINARY(16) PRIMARY KEY,
-    street VARCHAR(255) NOT NULL,
-    number DOUBLE NOT NULL
-);
-
 CREATE TABLE authorities (
-    id BINARY(16) PRIMARY KEY,
+    id BIGINT UNSIGNED PRIMARY KEY,
     authority_Name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE roles (
-    id BINARY(16) PRIMARY KEY,
+    id BIGINT UNSIGNED PRIMARY KEY,
     role_Name VARCHAR(255)
 );
 
 
 CREATE TABLE owner (
-    id BINARY(16) PRIMARY KEY,
+    id BIGINT UNSIGNED PRIMARY KEY,
     first_Name VARCHAR(255),
     last_name VARCHAR(255),
     tell_Number VARCHAR(20)
 );
 
-CREATE TABLE material (
-    id BINARY(16) PRIMARY KEY,
-    name VARCHAR(255),
-    cost DOUBLE
-);
-
 CREATE TABLE users (
-    id BINARY(16) PRIMARY KEY,
+    id BIGINT UNSIGNED PRIMARY KEY,
     login VARCHAR(255),
-    roles_id BINARY(16),
+    roles_id BIGINT UNSIGNED,
     FOREIGN KEY (roles_id) REFERENCES roles (id)
 );
 
 CREATE TABLE building (
-    id BINARY(16) PRIMARY KEY,
-    address_id BINARY(16) NOT NULL,
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     cost DOUBLE NOT NULL,
-    owner_id BINARY(16),
-    FOREIGN KEY (address_id) REFERENCES address(id),
+    address VARCHAR(255),
+    owner_id BIGINT UNSIGNED,
+    name VARCHAR(255),
     FOREIGN KEY (owner_id) REFERENCES owner(id)
 );
 
-CREATE TABLE builder (
-    id BINARY(16) PRIMARY KEY,
-    first_Name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    tell_Number VARCHAR(20) NOT NULL ,
-    building_id BINARY(16),
-    FOREIGN KEY (building_id) REFERENCES Building(id)
-);
-
-
 CREATE TABLE work_process (
-    id BINARY(16) PRIMARY KEY,
+    id BIGINT UNSIGNED PRIMARY KEY,
     action VARCHAR(255),
     cost DOUBLE,
-    builder_id BINARY(16),
-    FOREIGN KEY (builder_id) REFERENCES builder (id)
-);
-
-CREATE TABLE material_quantity (
-    id BINARY(16) PRIMARY KEY,
-    building_id BINARY(16) NOT NULL,
-    material_id BINARY(16) NOT NULL,
-    quantity INT NOT NULL,
-    FOREIGN KEY (building_id) REFERENCES building(id),
-    FOREIGN KEY (material_id) REFERENCES material(id)
+    builder VARCHAR(255)
 );

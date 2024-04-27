@@ -6,6 +6,7 @@ import com.example._23project.dto.Owner.OwnerAfterCreationDto;
 import com.example._23project.dto.Owner.OwnerCreateDto;
 import com.example._23project.entity.Building;
 import com.example._23project.entity.Owner;
+import com.example._23project.repository.OwnerRepository;
 import com.example._23project.sevice.BuildingService;
 import com.example._23project.sevice.OwnerService;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,14 @@ public class OwnerController {
     @DeleteMapping("/delete/{id}")
     public void deleteOwnerById(@PathVariable("id") String id){
         ownerService.deleteOwnerById(id);
+    }
+
+    @PutMapping("/owners/updateByTellNumber")
+    public Owner updateOwnerByTellNumber(
+            @RequestParam("tellNumber") int tellNumber,
+            @RequestParam("newTellNumber") int newTellNumber) {
+        Owner updatedOwnerByTellNumber = ownerService.updateOwnerByTellNumber(tellNumber, newTellNumber);
+        return updatedOwnerByTellNumber;
     }
 
     @PostMapping("/create")

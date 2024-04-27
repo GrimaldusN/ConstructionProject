@@ -2,13 +2,11 @@ package com.example._23project.sevice.impl;
 
 import com.example._23project.dto.Building.BuildingAfterCreationDto;
 import com.example._23project.dto.Building.BuildingCreateDto;
-import com.example._23project.entity.Address;
 import com.example._23project.entity.Building;
-import com.example._23project.exception.BuildingAlreadyExistException;
 import com.example._23project.exception.BuildingNotExistException;
 import com.example._23project.exception.ErrorMessage;
+import com.example._23project.exception.OwnerAlreadyExistException;
 import com.example._23project.mapper.BuildingMapper;
-import com.example._23project.repository.AddressRepository;
 import com.example._23project.repository.BuildingRepository;
 import com.example._23project.sevice.BuildingService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +22,6 @@ import java.util.UUID;
 public class BuildingServiceImpl implements BuildingService {
     private final BuildingRepository buildingRepository;
     private final BuildingMapper buildingMapper;
-    private final AddressRepository addressRepository;
 
     @Override
     public Building getBuildingById(String id) {
@@ -37,12 +34,20 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public Building getBuildingByAddressName(String addressName) {
-        Building building = buildingRepository.getBuildingByAddressName(addressName);
+    public Building getBuildingByAddress(String address) {
+        Building building = buildingRepository.getBuildingByAddress(address);
         if (building == null){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
         }
         return building;
+    }
+
+    @Override
+    public Building getBuildingByName(String name) {
+        Building building = buildingRepository.getBuildingByName(name);
+        if (building == null){
+            throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
+        }return building;
     }
 
     @Override
@@ -58,18 +63,12 @@ public class BuildingServiceImpl implements BuildingService {
     @Override
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public BuildingAfterCreationDto createBuilding(BuildingCreateDto buildingCreateDto) {
-        List<Building> building = buildingRepository.findByBuildingDescription(buildingCreateDto.getAddressName());
+        Building building = buildingRepository.getBuildingByName(buildingCreateDto.getName());
         if (building != null){
-            throw new BuildingAlreadyExistException(ErrorMessage.BUILDING_ALREADY_EXIST);
+            throw new OwnerAlreadyExistException(ErrorMessage.OWNER_ALREADY_EXIST);
         }
-
-        String addressName = buildingCreateDto.getAddressName();
-        Address address = addressRepository.findAddressByStreet(addressName);
         Building entity = buildingMapper.toEntity(buildingCreateDto);
-        entity.setAddress(address);
         Building buildingAfterCreation = buildingRepository.save(entity);
         return buildingMapper.toDto(buildingAfterCreation);
     }
-
-
 }

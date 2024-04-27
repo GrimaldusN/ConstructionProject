@@ -10,7 +10,7 @@ import java.util.UUID;
 @Repository
 public interface BuildingRepository extends JpaRepository<Building, UUID> {
     Building getBuildingById(UUID id);
-    Building getBuildingByAddressName(String addressName);
+    Building getBuildingByAddress(String address);
+    Building getBuildingByName(String name);
     void deleteBuildingById(UUID id);
-    List<Building> findByBuildingDescription(String description);
 }
