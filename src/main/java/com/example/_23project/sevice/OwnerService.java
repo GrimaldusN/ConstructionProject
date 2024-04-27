@@ -6,7 +6,6 @@ import com.example._23project.entity.Owner;
 
 public interface OwnerService {
     Owner getOwnerById(String id);
-    Owner findByTellNumber(int tellNumber);
     void deleteOwnerById(String id);
 
     Owner updateOwnerByTellNumber(int tellNumer, int newTellNumer);
