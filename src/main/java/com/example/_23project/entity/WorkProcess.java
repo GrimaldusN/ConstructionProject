@@ -26,8 +26,6 @@ public class WorkProcess {
     @Column(name = "cost")
     private double cost;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "builder_id")
-    private Builder builder;
+    @Column(name = "builder")
+    private String builder;
 }

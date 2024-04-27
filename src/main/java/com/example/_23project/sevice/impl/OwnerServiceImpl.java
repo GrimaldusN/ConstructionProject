@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -51,7 +50,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public String updateOwnerByTellNumber(int tellNumer, int newTellNumer) {
+    public Owner updateOwnerByTellNumber(int tellNumer, int newTellNumer) {
         Owner owner = ownerRepository.findByTellNumber(tellNumer);
         if (owner == null){
             throw new OwnerNotExistException(ErrorMessage.OWNER_NOT_EXIST);
@@ -62,13 +61,13 @@ public class OwnerServiceImpl implements OwnerService {
                 owner.setTellNumber(newTellNumer);
                 ownerRepository.saveAndFlush(owner);
             }
-        }return "Owner is corrected";
+        }return owner;
     }
 
     @Override
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public OwnerAfterCreationDto createOwner(OwnerCreateDto ownerCreateDto) {
-        List<Owner> owners = ownerRepository.findByOwnerDescription(ownerCreateDto.getLastName());
+        Owner owners = ownerRepository.findByTellNumber(ownerCreateDto.getTellNumber());
         if (owners != null){
             throw new OwnerAlreadyExistException(ErrorMessage.OWNER_ALREADY_EXIST);
         }

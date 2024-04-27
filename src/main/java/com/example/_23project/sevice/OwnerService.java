@@ -9,6 +9,6 @@ public interface OwnerService {
     Owner findByTellNumber(int tellNumber);
     void deleteOwnerById(String id);
 
-    String updateOwnerByTellNumber(int tellNumer, int newTellNumer);
+    Owner updateOwnerByTellNumber(int tellNumer, int newTellNumer);
     OwnerAfterCreationDto createOwner(OwnerCreateDto ownerCreateDto);
 }

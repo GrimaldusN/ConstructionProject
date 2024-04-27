@@ -25,21 +25,14 @@ public class Building {
     @Column(name = "cost")
     private double cost;
 
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @Column(name = "address")
+    private String address;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
-    private Set<MaterialQuantity> materials;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "building", cascade = CascadeType.ALL)
-    private List<Builder> builders;
+    @Column(name = "name")
+    private String name;
 }
