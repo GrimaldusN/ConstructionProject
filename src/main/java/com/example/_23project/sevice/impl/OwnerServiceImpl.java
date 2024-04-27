@@ -31,15 +31,6 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public Owner findByTellNumber(int tellNumber) {
-        Owner owner = ownerRepository.findByTellNumber(tellNumber);
-        if (owner == null){
-            throw new OwnerNotExistException(ErrorMessage.OWNER_NOT_EXIST);
-        }return owner;
-    }
-
-    @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void deleteOwnerById(String id) {
         if (ownerRepository.getOwnerById(UUID.fromString(id)) == null){
