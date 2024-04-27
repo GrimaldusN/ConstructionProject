@@ -6,8 +6,6 @@ import com.example._23project.entity.Building;
 
 public interface BuildingService {
     Building getBuildingById(String id);
-    Building getBuildingByAddress(String address);
-    Building getBuildingByName(String name);
     void deleteBuildingById(String id);
     BuildingAfterCreationDto createBuilding(BuildingCreateDto buildingCreateDto);
 }
