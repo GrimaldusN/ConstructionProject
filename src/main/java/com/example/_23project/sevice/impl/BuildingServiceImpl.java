@@ -32,24 +32,6 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public Building getBuildingByAddress(String address) {
-        Building building = buildingRepository.getBuildingByAddress(address);
-        if (building == null){
-            throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
-        }
-        return building;
-    }
-
-    @Override
-    public Building getBuildingByName(String name) {
-        Building building = buildingRepository.getBuildingByName(name);
-        if (building == null){
-            throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
-        }return building;
-    }
-
-    @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void deleteBuildingById(String id) {
         if (buildingRepository.findById(UUID.fromString(id)).isEmpty()){
