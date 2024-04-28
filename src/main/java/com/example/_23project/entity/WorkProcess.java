@@ -15,8 +15,8 @@ import java.util.UUID;
 public class WorkProcess {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", columnDefinition = "BINARY(16)")
     private UUID id;
 
     @Column(name = "action")
