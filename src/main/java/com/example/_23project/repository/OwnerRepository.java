@@ -10,6 +10,5 @@ import java.util.UUID;
 public interface OwnerRepository extends JpaRepository<Owner, UUID> {
     Owner getOwnerById(UUID id);
     void deleteOwnerById(UUID id);
-
     Owner findByTellNumber(int tellNumber);
 }

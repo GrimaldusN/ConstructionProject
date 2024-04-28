@@ -1,3 +1,5 @@
+drop table if exists role_authority;
+
 drop table if exists authorities;
 
 drop table if exists user_roles;
@@ -11,8 +13,6 @@ drop table if exists work_process;
 drop table if exists building;
 
 drop table if exists owner;
-
-drop table if exists role_authority;
 
 CREATE TABLE authorities (
     id BINARY(16) PRIMARY KEY,
