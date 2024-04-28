@@ -12,6 +12,8 @@ drop table if exists building;
 
 drop table if exists owner;
 
+drop table if exists role_authority;
+
 CREATE TABLE authorities (
     id BINARY(16) PRIMARY KEY,
     authority_Name VARCHAR(255) NOT NULL UNIQUE
@@ -58,4 +60,13 @@ CREATE TABLE user_roles (
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (role_id) REFERENCES roles(id)
 );
+
+CREATE TABLE role_authority (
+     role_id BINARY(16),
+     authority_id BINARY(16),
+     PRIMARY KEY (role_id, authority_id),
+     FOREIGN KEY (role_id) REFERENCES roles(id),
+     FOREIGN KEY (authority_id) REFERENCES authorities(id)
+);
+
 
