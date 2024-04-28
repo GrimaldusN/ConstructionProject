@@ -1,5 +1,7 @@
 package com.example._23project.controller;
 
+import com.example._23project.dto.UserAfterCreationDto;
+import com.example._23project.dto.UserCreateDto;
 import com.example._23project.entity.User;
 import com.example._23project.sevice.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -20,5 +22,10 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public void deleteUserById(@PathVariable("id") String id){
         userService.deleteUserById(id);
+    }
+
+    @PostMapping("/create")
+    public UserAfterCreationDto createUser(@RequestBody UserCreateDto userCreateDto){
+        return userService.createUser(userCreateDto);
     }
 }

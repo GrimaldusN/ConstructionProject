@@ -3,9 +3,9 @@ package com.example._23project.sevice.impl;
 import com.example._23project.dto.BuildingAfterCreationDto;
 import com.example._23project.dto.BuildingCreateDto;
 import com.example._23project.entity.Building;
+import com.example._23project.exception.BuildingAlreadyExistException;
 import com.example._23project.exception.BuildingNotExistException;
 import com.example._23project.exception.ErrorMessage;
-import com.example._23project.exception.OwnerAlreadyExistException;
 import com.example._23project.mapper.BuildingMapper;
 import com.example._23project.repository.BuildingRepository;
 import com.example._23project.sevice.BuildingService;
@@ -46,7 +46,7 @@ public class BuildingServiceImpl implements BuildingService {
     public BuildingAfterCreationDto createBuilding(BuildingCreateDto buildingCreateDto) {
         Building building = buildingRepository.getBuildingByName(buildingCreateDto.getName());
         if (building != null){
-            throw new OwnerAlreadyExistException(ErrorMessage.OWNER_ALREADY_EXIST);
+            throw new BuildingAlreadyExistException(ErrorMessage.BUILDING_ALREADY_EXIST);
         }
         Building entity = buildingMapper.toEntity(buildingCreateDto);
         Building buildingAfterCreation = buildingRepository.save(entity);
