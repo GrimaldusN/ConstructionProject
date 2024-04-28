@@ -21,7 +21,8 @@ import java.util.UUID;
 public class Autauthorities {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", columnDefinition = "BINARY(16)")
     private UUID id;
 
     @Column(name = "authority_Name")

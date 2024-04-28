@@ -1,4 +1,4 @@
-package com.example._23project.dto.Building;
+package com.example._23project.dto;
 
 import lombok.Value;
 

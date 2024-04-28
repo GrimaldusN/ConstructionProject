@@ -1,4 +1,4 @@
-package com.example._23project.dto.Owner;
+package com.example._23project.dto;
 
 import lombok.Value;
 

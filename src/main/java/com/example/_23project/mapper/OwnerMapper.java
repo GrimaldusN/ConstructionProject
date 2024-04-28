@@ -1,7 +1,7 @@
 package com.example._23project.mapper;
 
-import com.example._23project.dto.Owner.OwnerAfterCreationDto;
-import com.example._23project.dto.Owner.OwnerCreateDto;
+import com.example._23project.dto.OwnerAfterCreationDto;
+import com.example._23project.dto.OwnerCreateDto;
 import com.example._23project.entity.Owner;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
