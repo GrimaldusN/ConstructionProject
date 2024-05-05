@@ -6,6 +6,8 @@ import com.example._23project.entity.Building;
 import com.example._23project.sevice.BuildingService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/building")
 public class BuildingController {
@@ -16,12 +18,12 @@ public class BuildingController {
     }
 
     @GetMapping("/get/{id}")
-    public Building getBuildingById(@PathVariable("id") String id){
+    public Building getBuildingById(@PathVariable("id") UUID id){
         return buildingService.getBuildingById(id);
     }
 
     @DeleteMapping ("/delete/{id}")
-    public void deleteBuildingById(@PathVariable("id") String id){
+    public void deleteBuildingById(@PathVariable("id") UUID id){
         buildingService.deleteBuildingById(id);
     }
 

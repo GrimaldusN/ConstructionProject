@@ -23,8 +23,8 @@ public class BuildingServiceImpl implements BuildingService {
     private final BuildingMapper buildingMapper;
 
     @Override
-    public Building getBuildingById(String id) {
-        Building building = buildingRepository.getBuildingById(UUID.fromString(id));
+    public Building getBuildingById(UUID id) {
+        Building building = buildingRepository.getBuildingById(id);
         if (building == null){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
         }
@@ -33,11 +33,11 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public void deleteBuildingById(String id) {
-        if (buildingRepository.findById(UUID.fromString(id)).isEmpty()){
+    public void deleteBuildingById(UUID id) {
+        if (buildingRepository.findById(id).isEmpty()){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
         }
-        buildingRepository.deleteBuildingById(UUID.fromString(id));
+        buildingRepository.deleteBuildingById(id);
         System.out.println("Building is deleted");
     }
 

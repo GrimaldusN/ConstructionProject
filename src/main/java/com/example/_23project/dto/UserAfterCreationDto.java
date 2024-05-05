@@ -6,4 +6,12 @@ import lombok.Data;
 public class UserAfterCreationDto {
     String userId;
     String status= "User is Created";
+
+    public Object getId() {
+        return userId;
+    }
+
+    public void setId(Object id) {
+        this.userId = userId;
+    }
 }
