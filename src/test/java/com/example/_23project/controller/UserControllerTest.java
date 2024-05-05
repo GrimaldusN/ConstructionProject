@@ -19,8 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql("src/main/resources/schemaTest.sql")
-@Sql("dataTest.sql")
+@Sql("changelog/schemaTest.sql")
+@Sql("changelog/dataTest.sql")
 class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
