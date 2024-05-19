@@ -1,4 +1,4 @@
-package com.example._23project.sevice.impl;
+package com.example._23project.service.impl;
 
 import com.example._23project.dto.OwnerAfterCreationDto;
 import com.example._23project.dto.OwnerCreateDto;
@@ -6,7 +6,7 @@ import com.example._23project.entity.Owner;
 import com.example._23project.exception.*;
 import com.example._23project.mapper.OwnerMapper;
 import com.example._23project.repository.OwnerRepository;
-import com.example._23project.sevice.OwnerService;
+import com.example._23project.service.OwnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

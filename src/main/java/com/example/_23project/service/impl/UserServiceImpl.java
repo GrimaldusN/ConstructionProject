@@ -1,4 +1,4 @@
-package com.example._23project.sevice.impl;
+package com.example._23project.service.impl;
 
 import com.example._23project.dto.UserAfterCreationDto;
 import com.example._23project.dto.UserCreateDto;
@@ -8,7 +8,7 @@ import com.example._23project.exception.UserAlreadyExistException;
 import com.example._23project.exception.UserNotExistException;
 import com.example._23project.mapper.UserMapper;
 import com.example._23project.repository.UserRepository;
-import com.example._23project.sevice.UserService;
+import com.example._23project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

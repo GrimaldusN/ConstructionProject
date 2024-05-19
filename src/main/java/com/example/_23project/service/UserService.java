@@ -1,4 +1,4 @@
-package com.example._23project.sevice;
+package com.example._23project.service;
 
 import com.example._23project.dto.UserAfterCreationDto;
 import com.example._23project.dto.UserCreateDto;
