@@ -14,8 +14,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -43,7 +41,14 @@ class UserControllerTest {
                         .content(json))
                         .andReturn();
 
+        int status = result.getResponse().getStatus();
         String jsonResult = result.getResponse().getContentAsString();
+
+        System.out.println("Status: " + status);
+        System.out.println("Response JSON: " + jsonResult);
+
+        assertEquals(200, status);
+
         UserAfterCreationDto userAfterCreationDto = objectMapper.readValue(jsonResult, UserAfterCreationDto.class);
 
         assertNotNull(userAfterCreationDto.getId());

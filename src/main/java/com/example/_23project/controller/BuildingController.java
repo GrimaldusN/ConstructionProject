@@ -3,7 +3,7 @@ package com.example._23project.controller;
 import com.example._23project.dto.BuildingAfterCreationDto;
 import com.example._23project.dto.BuildingCreateDto;
 import com.example._23project.entity.Building;
-import com.example._23project.sevice.BuildingService;
+import com.example._23project.service.BuildingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;

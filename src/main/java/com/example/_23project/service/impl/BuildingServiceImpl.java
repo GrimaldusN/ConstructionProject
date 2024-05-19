@@ -1,4 +1,4 @@
-package com.example._23project.sevice.impl;
+package com.example._23project.service.impl;
 
 import com.example._23project.dto.BuildingAfterCreationDto;
 import com.example._23project.dto.BuildingCreateDto;
@@ -8,7 +8,7 @@ import com.example._23project.exception.BuildingNotExistException;
 import com.example._23project.exception.ErrorMessage;
 import com.example._23project.mapper.BuildingMapper;
 import com.example._23project.repository.BuildingRepository;
-import com.example._23project.sevice.BuildingService;
+import com.example._23project.service.BuildingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

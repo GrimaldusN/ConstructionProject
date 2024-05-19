@@ -3,7 +3,7 @@ package com.example._23project.controller;
 import com.example._23project.dto.UserAfterCreationDto;
 import com.example._23project.dto.UserCreateDto;
 import com.example._23project.entity.User;
-import com.example._23project.sevice.UserService;
+import com.example._23project.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
