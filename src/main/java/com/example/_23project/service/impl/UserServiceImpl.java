@@ -20,19 +20,19 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     @Override
-    public User getUserById(String id) {
-        User user = userRepository.getUserById(UUID.fromString(id));
+    public User getUserById(UUID id) {
+        User user = userRepository.getUserById(id);
         if (user == null){
             throw new UserNotExistException(ErrorMessage.USER_NOT_EXIST);
         }return user;
     }
 
     @Override
-    public void deleteUserById(String id) {
-        User user = userRepository.getUserById(UUID.fromString(id));
+    public void deleteUserById(UUID id) {
+        User user = userRepository.getUserById(id);
         if (user == null){
             throw new UserNotExistException(ErrorMessage.USER_NOT_EXIST);
-        }userRepository.deleteUsersById(UUID.fromString(id));
+        }userRepository.deleteUsersById(id);
         System.out.println("User with ID: " + id + " are deleted");
     }
 

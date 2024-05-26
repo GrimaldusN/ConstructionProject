@@ -69,4 +69,4 @@ CREATE TABLE role_authority (
                                 FOREIGN KEY (authority_id) REFERENCES authorities(id)
 );
 
-
+CREATE ALIAS IF NOT EXISTS UUID_TO_BIN FOR "com.example.utils.UUIDFunction.uuidToBin";

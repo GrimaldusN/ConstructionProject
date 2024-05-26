@@ -12,12 +12,8 @@ spring:
       ddl-auto: none
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
-
-  sql:
-    init:
-      mode: always
-      schema-locations: classpath:db/changelog/schema.sql
-      data-locations: classpath:db/changelog/data.sql
+  liquibase:
+    change-log: classpath:db/changelog/changelog-master.xml
 
 logging:
   level:
@@ -26,3 +22,4 @@ logging:
 
 server:
   port: 8080
+

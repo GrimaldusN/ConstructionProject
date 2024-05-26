@@ -6,6 +6,8 @@ import com.example._23project.entity.Owner;
 import com.example._23project.service.OwnerService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/owner")
 public class OwnerController {
@@ -16,12 +18,12 @@ public class OwnerController {
     }
 
     @GetMapping("/get/{id}")
-    public Owner getOwnerById(@PathVariable("id") String id){
+    public Owner getOwnerById(@PathVariable("id") UUID id){
         return ownerService.getOwnerById(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteOwnerById(@PathVariable("id") String id){
+    public void deleteOwnerById(@PathVariable("id") UUID id){
         ownerService.deleteOwnerById(id);
     }
 
