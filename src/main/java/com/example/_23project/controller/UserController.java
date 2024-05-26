@@ -6,6 +6,8 @@ import com.example._23project.entity.User;
 import com.example._23project.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -15,12 +17,12 @@ public class UserController {
         this.userService = userService;
     }
     @GetMapping("/get/{id}")
-    public User getUserById(@PathVariable("id") String id){
+    public User getUserById(@PathVariable("id") UUID id){
         return userService.getUserById(id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteUserById(@PathVariable("id") String id){
+    public void deleteUserById(@PathVariable("id") UUID id){
         userService.deleteUserById(id);
     }
 

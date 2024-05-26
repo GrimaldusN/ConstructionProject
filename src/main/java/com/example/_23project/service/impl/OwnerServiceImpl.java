@@ -22,8 +22,8 @@ public class OwnerServiceImpl implements OwnerService {
     private final OwnerMapper ownerMapper;
 
     @Override
-    public Owner getOwnerById(String id) {
-        Owner owner = ownerRepository.getOwnerById(UUID.fromString(id));
+    public Owner getOwnerById(UUID id) {
+        Owner owner = ownerRepository.getOwnerById(id);
         if (owner == null){
             throw new OwnerNotExistException(ErrorMessage.OWNER_NOT_EXIST);
         }
@@ -32,10 +32,10 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public void deleteOwnerById(String id) {
-        if (ownerRepository.getOwnerById(UUID.fromString(id)) == null){
+    public void deleteOwnerById(UUID id) {
+        if (ownerRepository.getOwnerById(id) == null){
             throw new OwnerNotExistException(ErrorMessage.OWNER_NOT_EXIST);
-        } ownerRepository.deleteOwnerById(UUID.fromString(id));
+        } ownerRepository.deleteOwnerById(id);
         System.out.println("Owner removed");
     }
 

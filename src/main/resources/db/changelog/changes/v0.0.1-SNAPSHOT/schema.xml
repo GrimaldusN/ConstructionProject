@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="drop-tables" author="yourname">
+        <sql>
+            <![CDATA[
+            DROP TABLE IF EXISTS role_authority;
+            DROP TABLE IF EXISTS authorities;
+            DROP TABLE IF EXISTS user_roles;
+            DROP TABLE IF EXISTS users;
+            DROP TABLE IF EXISTS roles;
+            DROP TABLE IF EXISTS work_process;
+            DROP TABLE IF EXISTS building;
+            DROP TABLE IF EXISTS owner;
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-tables" author="yourname">
+        <createTable tableName="authorities">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="authority_Name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="roles">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="role_Name" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="owner">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_Name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="tell_Number" type="VARCHAR(20)"/>
+        </createTable>
+
+        <createTable tableName="users">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="login" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="building">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="cost" type="DOUBLE" defaultValueNumeric="0"/>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="owner_id" type="BINARY(16)">
+                <constraints foreignKeyName="building_owner_fk" referencedTableName="owner" referencedColumnNames="id"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="work_process">
+            <column name="id" type="BINARY(16)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="action" type="VARCHAR(255)"/>
+            <column name="cost" type="DOUBLE"/>
+            <column name="builder" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="user_roles">
+            <column name="user_id" type="BINARY(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="BINARY(16)">
+                <constraints nullable="false"/>
+            </column>
+            <constraints primaryKey="true" primaryKeyConstraintName="user_roles_pk"/>
+            <constraints uniqueConstraintName="user_role_unique" uniqueConstraint="true" columnNames="user_id,role_id"/>
+            <constraints foreignKeyName="user_roles_user_fk" referencedTableName="users" referencedColumnNames="id" baseColumnNames="user_id"/>
+            <constraints foreignKeyName="user_roles_role_fk" referencedTableName="roles" referencedColumnNames="id" baseColumnNames="role_id"/>
+        </createTable>
+
+        <createTable tableName="role_authority">
+            <column name="role_id" type="BINARY(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_id" type="BINARY(16)">
+                <constraints nullable="false"/>
+            </column>
+            <constraints primaryKey="true" primaryKeyConstraintName="role_authority_pk"/>
+            <constraints uniqueConstraintName="role_authority_unique" uniqueConstraint="true" columnNames="role_id,authority_id"/>
+            <constraints foreignKeyName="role_authority_role_fk" referencedTableName="roles" referencedColumnNames="id" baseColumnNames="role_id"/>
+            <constraints foreignKeyName="role_authority_authority_fk" referencedTableName="authorities" referencedColumnNames="id" baseColumnNames="authority_id"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
