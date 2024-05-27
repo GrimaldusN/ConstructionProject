@@ -4,4 +4,6 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
     <include file="schema.xml"/>
     <include file="data.xml"/>
+    <include file="schemaTest.xml"/>
+    <include file="dataTest.xml"/>
 </databaseChangeLog>
