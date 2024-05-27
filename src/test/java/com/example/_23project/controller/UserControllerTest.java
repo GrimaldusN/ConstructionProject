@@ -3,38 +3,29 @@ package com.example._23project.controller;
 import com.example._23project.dto.UserAfterCreationDto;
 import com.example._23project.dto.UserCreateDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Sql("classpath:db/changelog/changes/v0.0.1-SNAPSHOT/schemaTest.xml")
+@Sql("classpath:db/changelog/changes/v0.0.1-SNAPSHOT/dataTest.xml")
+
 class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private ObjectMapper objectMapper;
-
-    @BeforeAll
-    public static void beforeAll() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
-        Statement statement = connection.createStatement();
-        statement.execute("CREATE ALIAS IF NOT EXISTS UUID_TO_BIN FOR \"com.example._23project.utils.UUIDFunction.uuidToBin\"");
-    }
 
     @Test
     public void createUserPositiveTest() throws Exception {
