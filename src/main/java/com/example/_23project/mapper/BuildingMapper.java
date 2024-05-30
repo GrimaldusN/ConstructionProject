@@ -12,8 +12,9 @@ import org.mapstruct.ReportingPolicy;
 public interface BuildingMapper {
     @Mapping(target = "cost", source = "cost")
     @Mapping(target = "address", source = "address")
-    @Mapping(target = "owner.firstName", source = "ownerName")
+    @Mapping(target = "ownerName", source = "owner")
     @Mapping(target = "name", source = "name")
+
 
     @Mapping(target = "id", ignore = true)
     Building toEntity(BuildingCreateDto buildingCreateDto);
