@@ -14,5 +14,6 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
   liquibase:
-    change-log: db/changelog/changelog-master.xml
-
+    change-log: classpath:db/changelog/changelog-master.xml
+    contexts: test
+    enabled: true
