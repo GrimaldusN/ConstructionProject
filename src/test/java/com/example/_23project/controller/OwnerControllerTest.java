@@ -52,8 +52,6 @@ public class OwnerControllerTest {
         owner.setLastName("Doe");
         owner.setTellNumber(123456789);
 
-        OwnerCreateDto ownerCreateDto = new OwnerCreateDto("Jane", "Smith", 987654321);
-
         ownerAfterCreationDto = new OwnerAfterCreationDto();
         ownerAfterCreationDto.setOwnerId(ownerId.toString());
     }
