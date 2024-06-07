@@ -52,8 +52,6 @@ public class BuildingControllerTest {
         building.setAddress("350 5th Ave, New York, NY 10118, USA");
         building.setName("Empire State Building");
 
-        BuildingCreateDto buildingCreateDto = new BuildingCreateDto("150000000", "350 5th Ave, New York, NY 10118, USA", "John Doe", "Empire State Building");
-
         buildingAfterCreationDto = new BuildingAfterCreationDto();
         buildingAfterCreationDto.setBuildingId(buildingId.toString());
     }

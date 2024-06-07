@@ -50,8 +50,6 @@ public class UserControllerTest {
         user.setId(userId);
         user.setLogin("alice_johnson");
 
-        UserCreateDto userCreateDto = new UserCreateDto("alice_johnson");
-
         userAfterCreationDto = new UserAfterCreationDto();
         userAfterCreationDto.setId(userId.toString());
     }
