@@ -14,7 +14,6 @@ import com.example._23project.service.BuildingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +38,8 @@ public class BuildingControllerTest {
     @Mock
     private BuildingService buildingService;
 
-    @InjectMocks
-    private BuildingController buildingController;
-
     private UUID buildingId;
     private Building building;
-    private BuildingCreateDto buildingCreateDto;
     private BuildingAfterCreationDto buildingAfterCreationDto;
 
     @BeforeEach
@@ -57,7 +52,7 @@ public class BuildingControllerTest {
         building.setAddress("350 5th Ave, New York, NY 10118, USA");
         building.setName("Empire State Building");
 
-        buildingCreateDto = new BuildingCreateDto("150000000","350 5th Ave, New York, NY 10118, USA","John Doe","Empire State Building");
+        BuildingCreateDto buildingCreateDto = new BuildingCreateDto("150000000", "350 5th Ave, New York, NY 10118, USA", "John Doe", "Empire State Building");
 
         buildingAfterCreationDto = new BuildingAfterCreationDto();
         buildingAfterCreationDto.setBuildingId(buildingId.toString());

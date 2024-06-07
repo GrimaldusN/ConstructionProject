@@ -14,7 +14,6 @@ import com.example._23project.service.OwnerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +38,8 @@ public class OwnerControllerTest {
     @Mock
     private OwnerService ownerService;
 
-    @InjectMocks
-    private OwnerController ownerController;
-
     private UUID ownerId;
     private Owner owner;
-    private OwnerCreateDto ownerCreateDto;
     private OwnerAfterCreationDto ownerAfterCreationDto;
 
     @BeforeEach
@@ -57,7 +52,7 @@ public class OwnerControllerTest {
         owner.setLastName("Doe");
         owner.setTellNumber(123456789);
 
-        ownerCreateDto = new OwnerCreateDto("Jane","Smith", 987654321);
+        OwnerCreateDto ownerCreateDto = new OwnerCreateDto("Jane", "Smith", 987654321);
 
         ownerAfterCreationDto = new OwnerAfterCreationDto();
         ownerAfterCreationDto.setOwnerId(ownerId.toString());
