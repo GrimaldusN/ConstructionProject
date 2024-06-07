@@ -14,7 +14,6 @@ import com.example._23project.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +38,8 @@ public class UserControllerTest {
     @Mock
     private UserServiceImpl userService;
 
-    @InjectMocks
-    private UserController userController;
-
     private UUID userId;
     private User user;
-    private UserCreateDto userCreateDto;
     private UserAfterCreationDto userAfterCreationDto;
 
     @BeforeEach
@@ -55,7 +50,7 @@ public class UserControllerTest {
         user.setId(userId);
         user.setLogin("alice_johnson");
 
-        userCreateDto = new UserCreateDto("alice_johnson");
+        UserCreateDto userCreateDto = new UserCreateDto("alice_johnson");
 
         userAfterCreationDto = new UserAfterCreationDto();
         userAfterCreationDto.setId(userId.toString());
