@@ -31,3 +31,21 @@ INSERT INTO buildings (id, address, cost, owner_id) VALUES
 (UUID_TO_BIN('a4e0d47d-ee3d-4a35-b7a2-0f39f1d56a30'),'456 Elm St', 150000.00, (SELECT id FROM owners WHERE first_Name = 'John')),
 (UUID_TO_BIN('59b2af08-b6d3-4b0b-a3d9-fb7f29528295'),'789 Oak St', 200000, (SELECT id FROM owners WHERE first_Name = 'Bob' )),
 (UUID_TO_BIN('fbbfb5c7-bcd8-4826-bf7a-6328831347cb'),'1011 Pine St', 250000, (SELECT id FROM owners WHERE first_Name = 'Emma' ));
+
+INSERT INTO role_authority (authority_id, role_id) VALUES
+(UUID_TO_BIN('4a3f12b8-6e37-45cb-8d6e-0b07a5c39c6e'), UUID_TO_BIN('e92f5b99-6b2d-4d3e-9ef9-36b8237b7a35')),
+(UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'), UUID_TO_BIN('e92f5b99-6b2d-4d3e-9ef9-36b8237b7a35')),
+(UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7'), UUID_TO_BIN('e92f5b99-6b2d-4d3e-9ef9-36b8237b7a35')),
+(UUID_TO_BIN('7d9d9334-4b0a-4f87-9e30-63e780f5079d'), UUID_TO_BIN('e92f5b99-6b2d-4d3e-9ef9-36b8237b7a35')),
+(UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'), UUID_TO_BIN('a5f56c7d-7f8a-409f-a7c6-53cba44f4473')),
+(UUID_TO_BIN('7d9d9334-4b0a-4f87-9e30-63e780f5079d'), UUID_TO_BIN('a5f56c7d-7f8a-409f-a7c6-53cba44f4473')),
+(UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'), UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7')),
+(UUID_TO_BIN('7d9d9334-4b0a-4f87-9e30-63e780f5079d'), UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7')),
+(UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7'), UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7')),
+(UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'), UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'));
+
+INSERT INTO user_roles(user_id, role_id) VALUES
+(UUID_TO_BIN('2bcf850c-8e34-4f85-8f5f-f0cf86a5b482'), UUID_TO_BIN('e92f5b99-6b2d-4d3e-9ef9-36b8237b7a35')),
+(UUID_TO_BIN('e3da7abf-716e-4f93-8ad0-912fd6ba62e6'), UUID_TO_BIN('a5f56c7d-7f8a-409f-a7c6-53cba44f4473')),
+(UUID_TO_BIN('7e37b4f3-1f29-4ef6-bb58-dbbd30352e4d'), UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7')),
+(UUID_TO_BIN('aa1ecdd8-0e4f-4db2-822b-813bf5677090'), UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'));

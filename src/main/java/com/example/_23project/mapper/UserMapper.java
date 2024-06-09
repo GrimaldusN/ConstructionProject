@@ -5,10 +5,8 @@ import com.example._23project.dto.UserCreateDto;
 import com.example._23project.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", unmappedSourcePolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring")
 public interface UserMapper {
     @Mapping(target = "login", source = "login")
     User toEntity(UserCreateDto userCreateDto);
