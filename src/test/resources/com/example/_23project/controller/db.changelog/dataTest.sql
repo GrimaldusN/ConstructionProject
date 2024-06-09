@@ -10,7 +10,7 @@ INSERT INTO roles (id, role_Name) VALUES
 (UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7'), 'ROLE_MANAGER'),
 (UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'), 'ROLE_GUEST');
 
-INSERT INTO owner (id, first_Name, last_name, tell_Number) VALUES
+INSERT INTO owners (id, first_Name, last_name, tell_Number) VALUES
 (UUID_TO_BIN('4a3f12b8-6e37-45cb-8d6e-0b07a5c39c6e'), 'Alice', 'Johnson', '5551234567'),
 (UUID_TO_BIN('aa0e63f5-2e36-4f49-8d47-1c56f99d4b9a'), 'Bob', 'Williams', '5559876543'),
 (UUID_TO_BIN('2c5c6485-0df6-42ab-9d21-5de7b19e7905'), 'John', 'Doe', '1234567890'),
@@ -27,7 +27,7 @@ INSERT INTO work_process (id, action, cost, builder) VALUES
 (UUID_TO_BIN('23ad7e4b-42f7-4cf5-a8f0-4a3e4b0aaf10'), 'Install plumbing', 3000.00, 'Anna');
 
 INSERT INTO buildings (id, address, cost, owner_id) VALUES
-(UUID_TO_BIN('f47ac10b-58cc-4372-a567-0e02b2c3d479'),'123 Main St', 100000.00, (SELECT id FROM owner WHERE first_Name = 'Alice')),
-(UUID_TO_BIN('a4e0d47d-ee3d-4a35-b7a2-0f39f1d56a30'),'456 Elm St', 150000.00, (SELECT id FROM owner WHERE first_Name = 'John')),
-(UUID_TO_BIN('59b2af08-b6d3-4b0b-a3d9-fb7f29528295'),'789 Oak St', 200000, (SELECT id FROM owner WHERE first_Name = 'Bob' )),
-(UUID_TO_BIN('fbbfb5c7-bcd8-4826-bf7a-6328831347cb'),'1011 Pine St', 250000, (SELECT id FROM owner WHERE first_Name = 'Emma' ));
+(UUID_TO_BIN('f47ac10b-58cc-4372-a567-0e02b2c3d479'),'123 Main St', 100000.00, (SELECT id FROM owners WHERE first_Name = 'Alice')),
+(UUID_TO_BIN('a4e0d47d-ee3d-4a35-b7a2-0f39f1d56a30'),'456 Elm St', 150000.00, (SELECT id FROM owners WHERE first_Name = 'John')),
+(UUID_TO_BIN('59b2af08-b6d3-4b0b-a3d9-fb7f29528295'),'789 Oak St', 200000, (SELECT id FROM owners WHERE first_Name = 'Bob' )),
+(UUID_TO_BIN('fbbfb5c7-bcd8-4826-bf7a-6328831347cb'),'1011 Pine St', 250000, (SELECT id FROM owners WHERE first_Name = 'Emma' ));
