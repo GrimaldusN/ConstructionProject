@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: Grim
+      changes:
+        - sqlFile:
+            path: db/changelog/changes/v0.0.1-SNAPSHOT/schema.sql
+
+  - changeSet:
+      id: 1
+      author: Grim
+      changes:
+        - sqlFile:
+            path: db/changelog/changes/v0.0.1-SNAPSHOT/data.sql

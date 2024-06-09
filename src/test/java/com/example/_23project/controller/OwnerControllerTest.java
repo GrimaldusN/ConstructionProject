@@ -29,7 +29,8 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@Sql("/db/changelog/changes/v0.0.1-SNAPSHOT/schemaTest.xml")
+@Sql("db.changelog/schemaTest.sql")
+@Sql("db.changelog/dataTest.sql")
 public class OwnerControllerTest {
 
     @Autowired
