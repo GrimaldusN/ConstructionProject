@@ -3,24 +3,31 @@ package com.example._23project.mapper;
 import com.example._23project.dto.BuildingAfterCreationDto;
 import com.example._23project.dto.BuildingCreateDto;
 import com.example._23project.entity.Building;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import com.example._23project.entity.Owner;
+import org.mapstruct.*;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface BuildingMapper {
     @Mapping(target = "cost", source = "cost")
     @Mapping(target = "address", source = "address")
-    @Mapping(target = "ownerName", source = "owner")
+    @Mapping(target = "owner.firstName", source = "firstName")
+    @Mapping(target = "owner.lastName", source = "lastName")
+    @Mapping(target = "owner.tellNumber", source = "tellNumber")
     @Mapping(target = "name", source = "name")
-
-
     @Mapping(target = "id", ignore = true)
     Building toEntity(BuildingCreateDto buildingCreateDto);
 
-    @Mapping(target ="buildingId", source = "id")
+    @AfterMapping
+    default void createdOwnerInfo(@MappingTarget Building building, BuildingCreateDto buildingCreateDto){
+        Owner owner = new Owner();
+        owner.setFirstName(buildingCreateDto.getFirstName());
+        owner.setLastName(buildingCreateDto.getLastName());
+        owner.setTellNumber(buildingCreateDto.getTellNumber());
+        building.setOwner(owner);
+    }
 
+    @Mapping(target ="buildingId", source = "id")
     @Mapping(target = "status", ignore = true)
     BuildingAfterCreationDto toDto(Building buildingAfterCreation);
 }
+

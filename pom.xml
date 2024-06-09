@@ -5,20 +5,24 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
+	<properties>
+		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
+		<version>3.2.4</version>
+		<relativePath/>
 	</parent>
 
 	<groupId>com.example</groupId>
-	<artifactId>_23Project</artifactId>
+	<artifactId>a23Project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>_23Project</name>
-	<description>_23Project</description>
-	<properties>
-		<java.version>17</java.version>
-	</properties>
+	<name>a23Project</name>
+	<description>a23Project</description>
 
 	<dependencies>
 		<!-- Spring Boot dependencies -->
@@ -59,17 +63,18 @@
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.5.5.Final</version>
+			<version>1.5.3.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>
-			<version>1.5.5.Final</version>
+			<version>1.5.3.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<artifactId>lombok-maven-plugin</artifactId>
+			<version>1.18.20.0</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Test dependencies -->
@@ -86,13 +91,25 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<excludes>
-						<exclude>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+						</path>
+						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
+							<version>1.18.32</version>
+							<scope>provided</scope>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 
@@ -104,15 +121,16 @@
 				<configuration>
 					<outputDirectory>${project.build.directory}/jacoco.exec</outputDirectory>
 					<excludes>
-						<exclude>src/main/java/com.example._23project.dto/*</exclude>
-						<exclude>src/main/java/com.example._23project.exception/*</exclude>
-						<exclude>src/main/java/com.example._23project.entity/*</exclude>
-						<exclude>src/main/java/com.example._23project.mapper/*</exclude>
-						<exclude>src/main/java/com.example._23project.repository/*</exclude>
+						<exclude>src/main/java/com.example.a23project.dto/*</exclude>
+						<exclude>src/main/java/com.example.a23project.exception/*</exclude>
+						<exclude>src/main/java/com.example.a23project.entity/*</exclude>
+						<exclude>src/main/java/com.example.a23project.mapper/*</exclude>
+						<exclude>src/main/java/com.example.a23project.repository/*</exclude>
 					</excludes>
 				</configuration>
 				<executions>
 					<execution>
+						<id>jacoco-initialize</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
@@ -127,5 +145,6 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<finalName>a23Project</finalName>
 	</build>
 </project>

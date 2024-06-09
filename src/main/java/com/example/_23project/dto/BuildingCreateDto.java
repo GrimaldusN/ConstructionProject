@@ -4,8 +4,10 @@ import lombok.Value;
 
 @Value
 public class BuildingCreateDto {
-    String cost;
+    double cost;
     String address;
-    String ownerName;
+    String firstName;
+    String lastName;
+    int tellNumber;
     String name;
 }
