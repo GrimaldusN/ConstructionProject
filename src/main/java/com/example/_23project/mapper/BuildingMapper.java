@@ -6,7 +6,7 @@ import com.example._23project.entity.Building;
 import com.example._23project.entity.Owner;
 import org.mapstruct.*;
 
-@Mapper(componentModel = "spring", unmappedSourcePolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", uses = {OwnerMapper.class} )
 public interface BuildingMapper {
     @Mapping(target = "cost", source = "cost")
     @Mapping(target = "address", source = "address")
