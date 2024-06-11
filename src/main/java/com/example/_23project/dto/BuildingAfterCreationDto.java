@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class BuildingAfterCreationDto {
-    String buildingId;
-    String status = "Building is Created";
+    private String buildingId;
+    private String status = "Building is Created";
 }

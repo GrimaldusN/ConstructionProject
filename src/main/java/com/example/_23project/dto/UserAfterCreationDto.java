@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class UserAfterCreationDto {
-    String userId;
-    String status= "User is Created";
+    private String userId;
+    private String status= "User is Created";
 
     public void setId(String string) {
     }

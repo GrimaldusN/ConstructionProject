@@ -12,12 +12,8 @@ public interface OwnerMapper {
     @Mapping(target = "firstName", source = "firstName")
     @Mapping(target = "lastName", source = "lastName")
     @Mapping(target = "tellNumber", source = "tellNumber")
-
-    @Mapping(target = "id", ignore = true)
     Owner toEntity(OwnerCreateDto ownerCreateDto);
 
     @Mapping(target = "ownerId", source = "id")
-
-    @Mapping(target = "status", ignore = true)
     OwnerAfterCreationDto toDto(Owner ownerAfterCreation);
 }

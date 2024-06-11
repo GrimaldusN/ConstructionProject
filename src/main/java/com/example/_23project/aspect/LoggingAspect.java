@@ -3,13 +3,12 @@ package com.example._23project.aspect;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 @Aspect
@@ -23,7 +22,7 @@ public class LoggingAspect {
     public void serviceLog(){}
 
     @Before("controllerLog()")
-    public void doBeforController(JoinPoint jp){
+    public void doBeforeController(JoinPoint jp){
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = Objects.requireNonNull(attributes).getRequest();
         log.info("NEW REQUEST : \n"+
@@ -37,4 +36,24 @@ public class LoggingAspect {
                 jp.getSignature().getDeclaringTypeName(),
                 jp.getSignature().getName());
     }
+
+    @Before("serviceLog()")
+    public void doBeforeService(JoinPoint jp) {
+        log.info("RUN SERVICE:\n" +
+                        "SERVICE_METHOD : {}.{}",
+                jp.getSignature().getDeclaringTypeName(), jp.getSignature().getName());
+    }
+
+
+    @AfterReturning(returning = "returnObject", pointcut = "controllerLog()")
+    public void doAfterReturning(Object returnObject) {
+        log.info("\nReturn value: {}\n" +"END OF REQUEST",
+                returnObject);}
+
+
+
+    @AfterThrowing(throwing = "ex", pointcut = "controllerLog()")
+    public void throwsException(JoinPoint jp, Exception ex) {
+        log.error("Request throw an exception. Cause - {}. {}",
+                Arrays.toString(jp.getArgs()), ex.getMessage());}
 }
