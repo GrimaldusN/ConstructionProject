@@ -14,7 +14,6 @@ public interface BuildingMapper {
     @Mapping(target = "owner.lastName", source = "lastName")
     @Mapping(target = "owner.tellNumber", source = "tellNumber")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "id", ignore = true)
     Building toEntity(BuildingCreateDto buildingCreateDto);
 
     @AfterMapping
@@ -27,7 +26,6 @@ public interface BuildingMapper {
     }
 
     @Mapping(target ="buildingId", source = "id")
-    @Mapping(target = "status", ignore = true)
     BuildingAfterCreationDto toDto(Building buildingAfterCreation);
 }
 
