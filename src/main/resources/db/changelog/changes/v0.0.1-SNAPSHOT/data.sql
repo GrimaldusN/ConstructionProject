@@ -26,12 +26,6 @@ INSERT INTO work_process (id, action, cost, builder) VALUES
 (UUID_TO_BIN('1b67323d-9bf5-4a4b-99ba-8a8d45358d6b'), 'Build foundation', 5000.00, 'Ivan'),
 (UUID_TO_BIN('23ad7e4b-42f7-4cf5-a8f0-4a3e4b0aaf10'), 'Install plumbing', 3000.00, 'Anna');
 
-INSERT INTO buildings (id, address, cost, owner_id) VALUES
-(UUID_TO_BIN('f47ac10b-58cc-4372-a567-0e02b2c3d479'),'123 Main St', 100000.00, (SELECT id FROM owners WHERE first_Name = 'Alice')),
-(UUID_TO_BIN('a4e0d47d-ee3d-4a35-b7a2-0f39f1d56a30'),'456 Elm St', 150000.00, (SELECT id FROM owners WHERE first_Name = 'John')),
-(UUID_TO_BIN('59b2af08-b6d3-4b0b-a3d9-fb7f29528295'),'789 Oak St', 200000, (SELECT id FROM owners WHERE first_Name = 'Bob' )),
-(UUID_TO_BIN('fbbfb5c7-bcd8-4826-bf7a-6328831347cb'),'1011 Pine St', 250000, (SELECT id FROM owners WHERE first_Name = 'Emma' ));
-
 INSERT INTO role_authority (authority_id, role_id) VALUES
 (UUID_TO_BIN('4a3f12b8-6e37-45cb-8d6e-0b07a5c39c6e'), UUID_TO_BIN('e92f5b99-6b2d-4d3e-9ef9-36b8237b7a35')),
 (UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'), UUID_TO_BIN('e92f5b99-6b2d-4d3e-9ef9-36b8237b7a35')),
@@ -49,3 +43,9 @@ INSERT INTO user_roles(user_id, role_id) VALUES
 (UUID_TO_BIN('e3da7abf-716e-4f93-8ad0-912fd6ba62e6'), UUID_TO_BIN('a5f56c7d-7f8a-409f-a7c6-53cba44f4473')),
 (UUID_TO_BIN('7e37b4f3-1f29-4ef6-bb58-dbbd30352e4d'), UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7')),
 (UUID_TO_BIN('aa1ecdd8-0e4f-4db2-822b-813bf5677090'), UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'));
+
+INSERT INTO buildings (id, address, cost, name, owner_id) VALUES
+                                                              (UUID_TO_BIN('f47ac10b-58cc-4372-a567-0e02b2c3d479'),'123 Main St', 100000.00, 'Aurora', (SELECT id FROM owners WHERE first_Name = 'Alice')),
+                                                              (UUID_TO_BIN('a4e0d47d-ee3d-4a35-b7a2-0f39f1d56a30'),'456 Elm St', 150000.00, 'Elysium', (SELECT id FROM owners WHERE first_Name = 'John')),
+                                                              (UUID_TO_BIN('59b2af08-b6d3-4b0b-a3d9-fb7f29528295'),'789 Oak St', 200000, 'Nimbus', (SELECT id FROM owners WHERE first_Name = 'Bob' )),
+                                                              (UUID_TO_BIN('fbbfb5c7-bcd8-4826-bf7a-6328831347cb'),'1011 Pine St', 250000, 'Solstice', (SELECT id FROM owners WHERE first_Name = 'Emma' ));
