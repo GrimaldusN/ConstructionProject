@@ -6,37 +6,34 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import java.util.UUID;
+
 import com.example._23project.dto.BuildingAfterCreationDto;
 import com.example._23project.dto.BuildingCreateDto;
 import com.example._23project.entity.Building;
 import com.example._23project.service.BuildingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@Sql("db.changelog/schemaTest.sql")
-@Sql("db.changelog/dataTest.sql")
+@Sql(scripts = {"/db/changelog/schemaTest.sql", "/db/changelog/dataTest.sql"})
 public class BuildingControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private BuildingService buildingService;
 
     private UUID buildingId;
@@ -45,7 +42,6 @@ public class BuildingControllerTest {
 
     @BeforeEach
     public void setup() {
-        MockitoAnnotations.openMocks(this);
         buildingId = UUID.randomUUID();
         building = new Building();
         building.setId(buildingId);
@@ -84,7 +80,7 @@ public class BuildingControllerTest {
 
         mockMvc.perform(post("/create")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"cost\":\"150000000\",\"address\":\"350 5th Ave, New York, NY 10118, USA\",\"ownerName\":\"John Doe\",\"name\":\"Empire State Building\"}"))
+                        .content("{\"cost\":150000000,\"address\":\"350 5th Ave, New York, NY 10118, USA\",\"ownerName\":\"John Doe\",\"name\":\"Empire State Building\"}"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{\"buildingId\":\"" + buildingId + "\",\"status\":\"Building is Created\"}"));
 
