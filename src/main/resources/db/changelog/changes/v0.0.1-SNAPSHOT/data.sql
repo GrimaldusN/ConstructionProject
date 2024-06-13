@@ -5,10 +5,10 @@ INSERT INTO authorities (id, authority_Name) VALUES
 (UUID_TO_BIN('7d9d9334-4b0a-4f87-9e30-63e780f5079d'), 'DELETE');
 
 INSERT INTO owners (id, first_Name, last_name, tell_Number) VALUES
-(UUID_TO_BIN('4a3f12b8-6e37-45cb-8d6e-0b07a5c39c6e'), 'Alice', 'Johnson', '5551234567'),
-(UUID_TO_BIN('aa0e63f5-2e36-4f49-8d47-1c56f99d4b9a'), 'Bob', 'Williams', '5559876543'),
+(UUID_TO_BIN('01f3f9da-9cd6-4b7b-8747-37440790527f'), 'Alice', 'Johnson', '5551234567'),
+(UUID_TO_BIN('e0658e7c-b2c4-4239-83c8-36bcdcc1d6d4'), 'Bob', 'Williams', '5559876543'),
 (UUID_TO_BIN('2c5c6485-0df6-42ab-9d21-5de7b19e7905'), 'John', 'Doe', '1234567890'),
-(UUID_TO_BIN('89a798b8-460d-4421-8fd6-9b7816e7e7e9'), 'Emma', 'Brown', '9999999999');
+(UUID_TO_BIN('c9201209-4a77-4011-80b2-0a1721a6a44d'), 'Emma', 'Brown', '9999999999');
 
 INSERT INTO roles (id, role_Name) VALUES
 (UUID_TO_BIN('e92f5b99-6b2d-4d3e-9ef9-36b8237b7a35'), 'ROLE_ADMIN'),
@@ -16,11 +16,11 @@ INSERT INTO roles (id, role_Name) VALUES
 (UUID_TO_BIN('b4166f59-8b4f-4e8a-b77a-21ec0144a8a7'), 'ROLE_MANAGER'),
 (UUID_TO_BIN('9e2f2563-2df3-4f84-95f1-74c5b4e0b26e'), 'ROLE_GUEST');
 
-INSERT INTO users (id, login, roles_id) VALUES
-(UUID_TO_BIN('2bcf850c-8e34-4f85-8f5f-f0cf86a5b482'), 'admin', (SELECT id FROM roles WHERE role_Name = 'ROLE_ADMIN')),
-(UUID_TO_BIN('e3da7abf-716e-4f93-8ad0-912fd6ba62e6'), 'user', (SELECT id FROM roles WHERE role_Name = 'ROLE_USER')),
-(UUID_TO_BIN('7e37b4f3-1f29-4ef6-bb58-dbbd30352e4d'), 'manager', (SELECT id FROM roles WHERE role_Name = 'ROLE_MANAGER')),
-(UUID_TO_BIN('aa1ecdd8-0e4f-4db2-822b-813bf5677090'), 'guest', (SELECT id FROM roles WHERE role_Name = 'ROLE_GUEST'));
+INSERT INTO users (id, login, password, roles_id) VALUES
+(UUID_TO_BIN('2bcf850c-8e34-4f85-8f5f-f0cf86a5b482'), 'admin','!qt', (SELECT id FROM roles WHERE role_Name = 'ROLE_ADMIN')),
+(UUID_TO_BIN('e3da7abf-716e-4f93-8ad0-912fd6ba62e6'), 'user','@Qv0?zJ', (SELECT id FROM roles WHERE role_Name = 'ROLE_USER')),
+(UUID_TO_BIN('7e37b4f3-1f29-4ef6-bb58-dbbd30352e4d'), 'manager','H)abas''', (SELECT id FROM roles WHERE role_Name = 'ROLE_MANAGER')),
+(UUID_TO_BIN('aa1ecdd8-0e4f-4db2-822b-813bf5677090'), 'guest','JL>3OQ', (SELECT id FROM roles WHERE role_Name = 'ROLE_GUEST'));
 
 INSERT INTO work_process (id, action, cost, builder) VALUES
 (UUID_TO_BIN('1b67323d-9bf5-4a4b-99ba-8a8d45358d6b'), 'Build foundation', 5000.00, 'Ivan'),
