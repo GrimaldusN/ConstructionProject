@@ -35,6 +35,7 @@ CREATE TABLE owners (
 CREATE TABLE users (
     id BINARY(16) PRIMARY KEY,
     login VARCHAR(255),
+    password VARCHAR(255),
     roles_id BINARY(16),
     FOREIGN KEY (roles_id) REFERENCES roles (id)
 );

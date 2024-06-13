@@ -5,4 +5,5 @@ import lombok.Value;
 @Value
 public class UserCreateDto {
     String login;
+    String password;
 }

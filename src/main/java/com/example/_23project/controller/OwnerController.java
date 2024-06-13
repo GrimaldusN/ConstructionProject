@@ -32,7 +32,7 @@ public class OwnerController {
             @RequestParam("tellNumber") int tellNumber,
             @RequestParam("newTellNumber") int newTellNumber) {
         return ownerService.updateOwnerByTellNumber(tellNumber, newTellNumber);
-    }
+     }
 
     @PostMapping("/create")
     public OwnerAfterCreationDto createOwner(@RequestBody OwnerCreateDto ownerCreateDto){
