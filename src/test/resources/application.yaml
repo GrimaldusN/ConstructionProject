@@ -1,12 +1,18 @@
 spring:
+
   main:
     banner-mode: off
 
+  liquibase:
+    change-log: classpath:src/main/resources/db/changelog/changelog-master.yaml
+    enabled: false
+
   datasource:
-    url: jdbc:h2:file:./testDb;MODE=XML
+    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;MODE=MySQL
     username: sa
     password:
     driver-class-name: org.h2.Driver
+
 
   sql:
     init:
@@ -18,5 +24,4 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
 
-liquibase:
-  enabled: false
+
