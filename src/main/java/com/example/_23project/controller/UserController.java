@@ -23,13 +23,13 @@ public class UserController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable UUID id) {
+    public ResponseEntity<User> getUserById(@PathVariable("id") UUID id) {
         User user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteUserById(@PathVariable("id") UUID id) {
         userService.deleteUserById(id);
         return ResponseEntity.ok().build();
     }
