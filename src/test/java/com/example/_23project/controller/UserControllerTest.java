@@ -1,5 +1,6 @@
 package com.example._23project.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
@@ -11,27 +12,30 @@ import com.example._23project.dto.UserAfterCreationDto;
 import com.example._23project.dto.UserCreateDto;
 import com.example._23project.entity.User;
 import com.example._23project.service.impl.UserServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("test")
 @Sql(scripts = {"/db/changelog/schemaTest.sql", "/db/changelog/dataTest.sql"})
 public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @MockBean
     private UserServiceImpl userService;
@@ -69,11 +73,16 @@ public class UserControllerTest {
     public void testGetUserById() throws Exception {
         when(userService.getUserById(userId)).thenReturn(user);
 
-        mockMvc.perform(get("/user/{id}", userId))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{\"id\":\"" + userId + "\",\"login\":\"alice_johnson\"}"));
+        String json = objectMapper.writeValueAsString(user);
 
-        verify(userService).getUserById(userId);
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/user/{id}", userId)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(json))
+                .andReturn();
+
+        assertEquals(200, result.getResponse().getStatus());
+        assertEquals(json, result.getResponse().getContentAsString());
     }
 
     @Test
