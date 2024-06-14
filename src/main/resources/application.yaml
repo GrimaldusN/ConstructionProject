@@ -3,9 +3,9 @@ spring:
     banner-mode: off
 
   datasource:
-    url: ${DATASOURCE_URL}
-    username: ${DATASOURCE_USERNAME}
-    password: ${DATASOURCE_PASSWORD}
+    url: jdbc:mysql://localhost:3306/construction_project
+    username: root
+    password: a2009300babych
 
   jpa:
     hibernate:
