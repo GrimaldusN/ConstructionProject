@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -20,6 +21,14 @@ import java.util.UUID;
 public class OwnerServiceImpl implements OwnerService {
     private final OwnerRepository ownerRepository;
     private final OwnerMapper ownerMapper;
+
+    @Override
+    public List<Owner> getAll() {
+        List<Owner> owners = ownerRepository.findAll();
+        if (owners == null){
+            throw new OwnersEmpty(ErrorMessage.OWNERS_EMPTY);
+        }return owners;
+    }
 
     @Override
     public Owner getOwnerById(UUID id) {
@@ -31,7 +40,6 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void deleteOwnerById(UUID id) {
         if (ownerRepository.getOwnerById(id) == null){
             throw new OwnerNotExistException(ErrorMessage.OWNER_NOT_EXIST);
@@ -41,7 +49,7 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public Owner updateOwnerByTellNumber(int tellNumer, int newTellNumer) {
+    public Owner updateOwnerByTellNumber(String tellNumer, String newTellNumer) {
         Owner owner = ownerRepository.findByTellNumber(tellNumer);
         if (owner == null){
             throw new OwnerNotExistException(ErrorMessage.OWNER_NOT_EXIST);
@@ -56,7 +64,6 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public OwnerAfterCreationDto createOwner(OwnerCreateDto ownerCreateDto) {
         Owner owners = ownerRepository.findByTellNumber(ownerCreateDto.getTellNumber());
         if (owners != null){

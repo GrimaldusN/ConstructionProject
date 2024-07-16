@@ -6,6 +6,8 @@ import com.example.construction_project.entity.Owner;
 import com.example.construction_project.service.OwnerService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -16,25 +18,29 @@ public class OwnerController {
     public OwnerController(OwnerService ownerService) {
         this.ownerService = ownerService;
     }
+    @GetMapping
+    public List<Owner> getAll(){
+        return new ArrayList<>(ownerService.getAll());
+    }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public Owner getOwnerById(@PathVariable("id") UUID id){
         return ownerService.getOwnerById(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteOwnerById(@PathVariable("id") UUID id){
         ownerService.deleteOwnerById(id);
     }
 
-    @PutMapping("/owners/updateByTellNumber")
+    @PutMapping("/updateTellNumber")
     public Owner updateOwnerByTellNumber(
-            @RequestParam("tellNumber") int tellNumber,
-            @RequestParam("newTellNumber") int newTellNumber) {
+            @RequestParam("tellNumber") String tellNumber,
+            @RequestParam("newTellNumber") String newTellNumber) {
         return ownerService.updateOwnerByTellNumber(tellNumber, newTellNumber);
      }
 
-    @PostMapping("/create")
+    @PostMapping
     public OwnerAfterCreationDto createOwner(@RequestBody OwnerCreateDto ownerCreateDto){
         return ownerService.createOwner(ownerCreateDto);
     }

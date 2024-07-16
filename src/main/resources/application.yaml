@@ -3,7 +3,7 @@ spring:
     banner-mode: off
 
   datasource:
-    url: jdbc:mysql://localhost:3306/construction_project
+    url: jdbc:mysql://localhost:3306/constractionproject
     #  ${DATASOURCE_URL}
     username: root
     #  ${DATASOURCE_USERNAME}
@@ -20,7 +20,7 @@ spring:
 
 logging:
   level:
-    root: debug
+    root: warn
 
 
 server:

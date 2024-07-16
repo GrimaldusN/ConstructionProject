@@ -5,6 +5,7 @@ import com.example.construction_project.dto.BuildingCreateDto;
 import com.example.construction_project.entity.Building;
 import com.example.construction_project.exception.BuildingAlreadyExistException;
 import com.example.construction_project.exception.BuildingNotExistException;
+import com.example.construction_project.exception.BuildingsEmpty;
 import com.example.construction_project.exception.ErrorMessage;
 import com.example.construction_project.mapper.BuildingMapper;
 import com.example.construction_project.repository.BuildingRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -21,6 +23,15 @@ import java.util.UUID;
 public class BuildingServiceImpl implements BuildingService {
     private final BuildingRepository buildingRepository;
     private final BuildingMapper buildingMapper;
+
+
+    @Override
+    public List<Building> getAll() {
+        List<Building> buildings = buildingRepository.findAll();
+        if (buildings == null){
+            throw new BuildingsEmpty(ErrorMessage.BUILDINGS_EMPTY);
+        }return buildings;
+    }
 
     @Override
     public Building getBuildingById(UUID id) {

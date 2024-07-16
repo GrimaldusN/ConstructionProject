@@ -6,5 +6,5 @@ import lombok.Value;
 public class OwnerCreateDto {
     String firstName;
     String lastName;
-    int tellNumber;
+    String tellNumber;
 }
