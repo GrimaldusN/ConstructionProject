@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(AddressAlreadyExistException.class)
+    @ExceptionHandler(BuildingsEmpty.class)
     public ResponseEntity<ErrorExtension> handleAddressAlreadyExistException(Exception e){
         return new ResponseEntity<>(new ErrorExtension(
                 e.getMessage(), HttpStatus.CONFLICT).getErrorCode());
@@ -35,7 +35,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
                 e.getMessage(), HttpStatus.CONFLICT).getErrorCode());
     }
 
-    @ExceptionHandler(AddressNotExistException.class)
+    @ExceptionHandler(OwnersEmpty.class)
     public ResponseEntity<ErrorExtension> handleAddressNotExistException(Exception e){
         return new ResponseEntity<>(new ErrorExtension(
                 e.getMessage(), HttpStatus.NOT_FOUND).getErrorCode());

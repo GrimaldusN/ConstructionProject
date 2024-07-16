@@ -26,5 +26,5 @@ public class Owner {
     private String lastName;
 
     @Column(name = "tell_Number")
-    private int tellNumber;
+    private String tellNumber;
 }

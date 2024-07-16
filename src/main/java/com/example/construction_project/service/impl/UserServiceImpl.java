@@ -6,6 +6,7 @@ import com.example.construction_project.entity.User;
 import com.example.construction_project.exception.ErrorMessage;
 import com.example.construction_project.exception.UserAlreadyExistException;
 import com.example.construction_project.exception.UserNotExistException;
+import com.example.construction_project.exception.UsersEmpty;
 import com.example.construction_project.mapper.UserMapper;
 import com.example.construction_project.repository.UserRepository;
 import com.example.construction_project.service.UserService;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -21,6 +23,15 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+
+    @Override
+    public List<User> getAll() {
+        List<User> users = userRepository.findAll();
+        if (users == null){
+            throw new UsersEmpty(ErrorMessage.USERS_EMPTY);
+        }return users;
+    }
+
     @Override
     public User getUserById(UUID id) {
         User user = userRepository.getUserById(id);

@@ -9,5 +9,5 @@ public class BuildingCreateDto {
     String address;
     String firstName;
     String lastName;
-    int tellNumber;
+    String tellNumber;
 }
