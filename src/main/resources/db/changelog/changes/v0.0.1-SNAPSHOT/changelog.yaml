@@ -1,14 +1,6 @@
 databaseChangeLog:
-  - changeSet:
-      id: 0
-      author: Grim
-      changes:
-        - sqlFile:
-            path: db/changelog/changes/v0.0.1-SNAPSHOT/schema.sql
+  - include:
+      file: db/changelog/changes/v0.0.1-SNAPSHOT/create-tables.yaml
 
-  - changeSet:
-      id: 1
-      author: Grim
-      changes:
-        - sqlFile:
-            path: db/changelog/changes/v0.0.1-SNAPSHOT/data.sql
+#  - include:
+#      file: db/changelog/changes/v0.0.1-SNAPSHOT/insert-data.yaml

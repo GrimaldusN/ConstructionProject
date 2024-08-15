@@ -47,7 +47,7 @@ public class OwnerControllerTest {
         owner.setId(ownerId);
         owner.setFirstName("John");
         owner.setLastName("Doe");
-        owner.setTellNumber(123456789);
+        owner.setTellNumber("123456789");
 
         ownerAfterCreationDto = new OwnerAfterCreationDto();
         ownerAfterCreationDto.setOwnerId(ownerId.toString());
@@ -76,8 +76,8 @@ public class OwnerControllerTest {
 
     @Test
     public void testUpdateOwnerByTellNumber() throws Exception {
-        int tellNumber = 123456789;
-        int newTellNumber = 987654321;
+        String tellNumber = "123456789";
+        String newTellNumber = "987654321";
         when(ownerService.updateOwnerByTellNumber(tellNumber, newTellNumber)).thenReturn(owner);
 
         mockMvc.perform(put("/owner/owners/updateByTellNumber")
