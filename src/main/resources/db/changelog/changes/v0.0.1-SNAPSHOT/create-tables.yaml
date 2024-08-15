@@ -1,0 +1,133 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Grim
+      preConditions:
+        onFail: 'MARK_RAN'
+        not:
+          tableExists:
+            tableName: roles
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: binary(16)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: role_Name
+                  type: VARCHAR(255)
+        - createIndex:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+            indexName: idx_roles_id
+
+        - createTable:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  type: binary(16)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: authority_Name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+            indexName: idx_authorities_id
+
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: binary(16)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+        - createIndex:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+            indexName: idx_users_id
+
+        - createTable:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  type: binary(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authority_id
+                  type: BINARY(16)
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+
+        - createTable:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: binary(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: BINARY(16)
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+
+#  - changeSet:
+#      id: 2
+#      author: Grim
+#      changes:
+#        - addForeignKeyConstraint:
+#            baseTableName: role_authority
+#            baseColumnNames: role_id
+#            constraintName: fk_role_authority_role
+#            referencedTableName: roles
+#            referencedColumnNames: id
+#
+#        - addForeignKeyConstraint:
+#            baseTableName: role_authority
+#            baseColumnNames: authority_id
+#            constraintName: fk_role_authority_authority
+#            referencedTableName: authorities
+#            referencedColumnNames: id
+#
+#        - addForeignKeyConstraint:
+#            baseTableName: user_roles
+#            baseColumnNames: user_id
+#            constraintName: fk_user_roles_user
+#            referencedTableName: users
+#            referencedColumnNames: id
+#
+#        - addForeignKeyConstraint:
+#            baseTableName: user_roles
+#            baseColumnNames: role_id
+#            constraintName: fk_user_roles_role
+#            referencedTableName: roles
+#            referencedColumnNames: id

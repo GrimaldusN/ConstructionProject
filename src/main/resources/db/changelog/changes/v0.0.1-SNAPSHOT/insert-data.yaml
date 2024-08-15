@@ -1,0 +1,216 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Grim
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440000
+              - column:
+                  name: role_Name
+                  value: 'ROLE_USER'
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440001
+              - column:
+                  name: role_Name
+                  value: 'ROLE_ADMIN'
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440002
+              - column:
+                  name: role_Name
+                  value: 'ROLE_GUEST'
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440003
+              - column:
+                  name: role_Name
+                  value: 'ROLE_MANAGER'
+
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440004
+              - column:
+                  name: authority_Name
+                  value: 'READ_PRIVILEGE'
+
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440005
+              - column:
+                  name: authority_Name
+                  value: 'WRITE_PRIVILEGE'
+
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440006
+              - column:
+                  name: authority_Name
+                  value: 'DELETE_PRIVILEGE'
+
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440007
+              - column:
+                  name: authority_Name
+                  value: 'UPDATE_PRIVILEGE'
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440008
+              - column:
+                  name: login
+                  value: 'user1'
+              - column:
+                  name: password
+                  value: 'password1'
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a716446655440009
+              - column:
+                  name: login
+                  value: 'user2'
+              - column:
+                  name: password
+                  value: 'password2'
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a71644665544000a
+              - column:
+                  name: login
+                  value: 'user3'
+              - column:
+                  name: password
+                  value: 'password3'
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 0x550e8400e29b41d4a71644665544000b
+              - column:
+                  name: login
+                  value: 'user4'
+              - column:
+                  name: password
+                  value: 'password4'
+
+        - insert:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  value: 0x550e8400e29b41d4a716446655440000
+              - column:
+                  name: authority_id
+                  value: 0x550e8400e29b41d4a716446655440004
+
+        - insert:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  value: 0x550e8400e29b41d4a716446655440001
+              - column:
+                  name: authority_id
+                  value: 0x550e8400e29b41d4a716446655440005
+
+        - insert:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  value: 0x550e8400e29b41d4a716446655440002
+              - column:
+                  name: authority_id
+                  value: 0x550e8400e29b41d4a716446655440006
+
+        - insert:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  value: 0x550e8400e29b41d4a716446655440003
+              - column:
+                  name: authority_id
+                  value: 0x550e8400e29b41d4a716446655440007
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 0x550e8400e29b41d4a716446655440008
+              - column:
+                  name: role_id
+                  value: 0x550e8400e29b41d4a716446655440000
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 0x550e8400e29b41d4a716446655440009
+              - column:
+                  name: role_id
+                  value: 0x550e8400e29b41d4a716446655440001
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 0x550e8400e29b41d4a71644665544000a
+              - column:
+                  name: role_id
+                  value: 0x550e8400e29b41d4a716446655440002
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 0x550e8400e29b41d4a71644665544000b
+              - column:
+                  name: role_id
+                  value: 0x550e8400e29b41d4a716446655440003
