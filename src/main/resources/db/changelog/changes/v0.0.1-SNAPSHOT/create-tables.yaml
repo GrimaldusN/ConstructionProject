@@ -100,34 +100,34 @@ databaseChangeLog:
                     nullable: false
                     primaryKey: true
 
-#  - changeSet:
-#      id: 2
-#      author: Grim
-#      changes:
-#        - addForeignKeyConstraint:
-#            baseTableName: role_authority
-#            baseColumnNames: role_id
-#            constraintName: fk_role_authority_role
-#            referencedTableName: roles
-#            referencedColumnNames: id
-#
-#        - addForeignKeyConstraint:
-#            baseTableName: role_authority
-#            baseColumnNames: authority_id
-#            constraintName: fk_role_authority_authority
-#            referencedTableName: authorities
-#            referencedColumnNames: id
-#
-#        - addForeignKeyConstraint:
-#            baseTableName: user_roles
-#            baseColumnNames: user_id
-#            constraintName: fk_user_roles_user
-#            referencedTableName: users
-#            referencedColumnNames: id
-#
-#        - addForeignKeyConstraint:
-#            baseTableName: user_roles
-#            baseColumnNames: role_id
-#            constraintName: fk_user_roles_role
-#            referencedTableName: roles
-#            referencedColumnNames: id
+  - changeSet:
+      id: 3
+      author: Grim
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: role_authority
+            baseColumnNames: role_id
+            constraintName: fk_role_authority_role
+            referencedTableName: roles
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: role_authority
+            baseColumnNames: authority_id
+            constraintName: fk_role_authority_authority
+            referencedTableName: authorities
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: user_roles
+            baseColumnNames: user_id
+            constraintName: fk_user_roles_user
+            referencedTableName: users
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: user_roles
+            baseColumnNames: role_id
+            constraintName: fk_user_roles_role
+            referencedTableName: roles
+            referencedColumnNames: id
