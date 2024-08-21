@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440000
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440000', '-', ''))"
               - column:
                   name: role_Name
                   value: 'ROLE_USER'
@@ -18,7 +18,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440001
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440001', '-', ''))"
               - column:
                   name: role_Name
                   value: 'ROLE_ADMIN'
@@ -28,7 +28,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440002
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440002', '-', ''))"
               - column:
                   name: role_Name
                   value: 'ROLE_GUEST'
@@ -38,7 +38,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440003
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440003', '-', ''))"
               - column:
                   name: role_Name
                   value: 'ROLE_MANAGER'
@@ -48,7 +48,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440004
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440004', '-', ''))"
               - column:
                   name: authority_Name
                   value: 'READ_PRIVILEGE'
@@ -58,7 +58,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440005
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440005', '-', ''))"
               - column:
                   name: authority_Name
                   value: 'WRITE_PRIVILEGE'
@@ -68,7 +68,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440006
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440006', '-', ''))"
               - column:
                   name: authority_Name
                   value: 'DELETE_PRIVILEGE'
@@ -78,7 +78,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440007
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440007', '-', ''))"
               - column:
                   name: authority_Name
                   value: 'UPDATE_PRIVILEGE'
@@ -88,7 +88,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440008
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440008', '-', ''))"
               - column:
                   name: login
                   value: 'user1'
@@ -101,7 +101,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a716446655440009
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440009', '-', ''))"
               - column:
                   name: login
                   value: 'user2'
@@ -114,7 +114,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a71644665544000a
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-44665544000a', '-', ''))"
               - column:
                   name: login
                   value: 'user3'
@@ -127,7 +127,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  value: 0x550e8400e29b41d4a71644665544000b
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-44665544000b', '-', ''))"
               - column:
                   name: login
                   value: 'user4'
@@ -140,77 +140,77 @@ databaseChangeLog:
             columns:
               - column:
                   name: role_id
-                  value: 0x550e8400e29b41d4a716446655440000
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440000', '-', ''))"
               - column:
                   name: authority_id
-                  value: 0x550e8400e29b41d4a716446655440004
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440004', '-', ''))"
 
         - insert:
             tableName: role_authority
             columns:
               - column:
                   name: role_id
-                  value: 0x550e8400e29b41d4a716446655440001
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440001', '-', ''))"
               - column:
                   name: authority_id
-                  value: 0x550e8400e29b41d4a716446655440005
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440005', '-', ''))"
 
         - insert:
             tableName: role_authority
             columns:
               - column:
                   name: role_id
-                  value: 0x550e8400e29b41d4a716446655440002
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440002', '-', ''))"
               - column:
                   name: authority_id
-                  value: 0x550e8400e29b41d4a716446655440006
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440006', '-', ''))"
 
         - insert:
             tableName: role_authority
             columns:
               - column:
                   name: role_id
-                  value: 0x550e8400e29b41d4a716446655440003
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440003', '-', ''))"
               - column:
                   name: authority_id
-                  value: 0x550e8400e29b41d4a716446655440007
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440007', '-', ''))"
 
         - insert:
             tableName: user_roles
             columns:
               - column:
                   name: user_id
-                  value: 0x550e8400e29b41d4a716446655440008
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440008', '-', ''))"
               - column:
                   name: role_id
-                  value: 0x550e8400e29b41d4a716446655440000
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440000', '-', ''))"
 
         - insert:
             tableName: user_roles
             columns:
               - column:
                   name: user_id
-                  value: 0x550e8400e29b41d4a716446655440009
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440009', '-', ''))"
               - column:
                   name: role_id
-                  value: 0x550e8400e29b41d4a716446655440001
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440001', '-', ''))"
 
         - insert:
             tableName: user_roles
             columns:
               - column:
                   name: user_id
-                  value: 0x550e8400e29b41d4a71644665544000a
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-44665544000a', '-', ''))"
               - column:
                   name: role_id
-                  value: 0x550e8400e29b41d4a716446655440002
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440002', '-', ''))"
 
         - insert:
             tableName: user_roles
             columns:
               - column:
                   name: user_id
-                  value: 0x550e8400e29b41d4a71644665544000b
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-44665544000b', '-', ''))"
               - column:
                   name: role_id
-                  value: 0x550e8400e29b41d4a716446655440003
+                  valueComputed: "UNHEX(REPLACE('550e8400-e29b-41d4-a716-446655440003', '-', ''))"
