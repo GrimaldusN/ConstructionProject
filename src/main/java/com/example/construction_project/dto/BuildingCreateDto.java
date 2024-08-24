@@ -10,4 +10,6 @@ public class BuildingCreateDto {
     String firstName;
     String lastName;
     String tellNumber;
+    String material_name;
+    int material_quantity;
 }

@@ -131,3 +131,145 @@ databaseChangeLog:
             constraintName: fk_user_roles_role
             referencedTableName: roles
             referencedColumnNames: id
+
+  - changeSet:
+      id: 4
+      author: Grim
+      changes:
+        - createTable:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  type: binary(16)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: cost
+                  type: DOUBLE
+        - createIndex:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+            indexName: idx_materials_id
+
+        - createTable:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  type: binary(16)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: INT
+              - column:
+                  name: material_id
+                  type: binary(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: building_id
+                  type: binary(16)
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+            indexName: idx_materials_quantity_id
+
+        - createTable:
+            tableName: owners
+            columns:
+              - column:
+                  name: id
+                  type: binary(16)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_Name
+                  type: VARCHAR(255)
+              - column:
+                  name: last_name
+                  type: VARCHAR(255)
+              - column:
+                  name: tell_Number
+                  type: VARCHAR(255)
+        - createIndex:
+            tableName: owners
+            columns:
+              - column:
+                  name: id
+            indexName: idx_owner_id
+
+        - createTable:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  type: binary(16)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cost
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+        - createIndex:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+            indexName: idx_buildings_id
+
+  - changeSet:
+      id: 5
+      author: Grim
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: materials_quantity
+            baseColumnNames: material_id
+            constraintName: fk_material_quantity_material
+            referencedTableName: materials
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: materials_quantity
+            baseColumnNames: building_id
+            constraintName: fk_material_quantity_building
+            referencedTableName: buildings
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: buildings
+            baseColumnNames: id
+            constraintName: fk_buildings_owner
+            referencedTableName: owners
+            referencedColumnNames: id
+  - changeSet:
+      id: 7
+      author: Grim
+      changes:
+        - addColumn:
+            tableName: buildings
+            columns:
+              - column:
+                  name: owner_id
+                  type: binary(16)
+                  constraints:
+                    nullable: false
+

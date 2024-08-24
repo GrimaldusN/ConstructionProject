@@ -1,0 +1,191 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8
+      author: Grim
+      changes:
+        - insert:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-446655440000', '-', ''))"
+              - column:
+                  name: address
+                  value: '123 Main St'
+              - column:
+                  name: cost
+                  value: 250000.0
+              - column:
+                  name: owner_id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-446655440000', '-', ''))"
+
+
+        - insert:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-446655440001', '-', ''))"
+              - column:
+                  name: address
+                  value: '456 Elm St'
+              - column:
+                  name: cost
+                  value: 300000.0
+              - column:
+                  name: owner_id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-446655440001', '-', ''))"
+
+
+        - insert:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-446655440002', '-', ''))"
+              - column:
+                  name: address
+                  value: '789 Oak St'
+              - column:
+                  name: cost
+                  value: 275000.0
+              - column:
+                  name: owner_id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-446655440002', '-', ''))"
+
+
+        - insert:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-446655440003', '-', ''))"
+              - column:
+                  name: address
+                  value: '101 Pine St'
+              - column:
+                  name: cost
+                  value: 350000.0
+              - column:
+                  name: owner_id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-446655440003', '-', ''))"
+
+  - changeSet:
+      id: 9
+      author: Grim
+      changes:
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-446655440000', '-', ''))"
+              - column:
+                  name: name
+                  value: 'Wood'
+              - column:
+                  name: cost
+                  value: 50.0
+
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-446655440001', '-', ''))"
+              - column:
+                  name: name
+                  value: 'Steel'
+              - column:
+                  name: cost
+                  value: 120.0
+
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-446655440002', '-', ''))"
+              - column:
+                  name: name
+                  value: 'Concrete'
+              - column:
+                  name: cost
+                  value: 80.0
+
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-446655440003', '-', ''))"
+              - column:
+                  name: name
+                  value: 'Glass'
+              - column:
+                  name: cost
+                  value: 70.0
+
+        - insert:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-446655440000', '-', ''))"
+              - column:
+                  name: quantity
+                  value: 100
+              - column:
+                  name: material_id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-446655440000', '-', ''))"
+              - column:
+                  name: building_id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-446655440000', '-', ''))"
+
+        - insert:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-446655440001', '-', ''))"
+              - column:
+                  name: quantity
+                  value: 200
+              - column:
+                  name: material_id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-446655440001', '-', ''))"
+              - column:
+                  name: building_id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-446655440001', '-', ''))"
+
+        - insert:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-446655440002', '-', ''))"
+              - column:
+                  name: quantity
+                  value: 150
+              - column:
+                  name: material_id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-446655440002', '-', ''))"
+              - column:
+                  name: building_id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-446655440002', '-', ''))"
+
+        - insert:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-446655440003', '-', ''))"
+              - column:
+                  name: quantity
+                  value: 300
+              - column:
+                  name: material_id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-446655440003', '-', ''))"
+              - column:
+                  name: building_id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-446655440003', '-', ''))"

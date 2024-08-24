@@ -11,31 +11,24 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "buildings")
+@Table(name = "materials_quantity")
 @NoArgsConstructor
-public class Building {
-
+public class Material_quantity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Column(name = "cost")
-    private double cost;
-
-    @Column(name = "address")
-    private String address;
+    @Column(name = "quantity")
+    private int quantity;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private Owner owner;
-
-    @Column(name = "name")
-    private String name;
+    @OneToMany
+    @JoinColumn(name = "material_id")
+    private Material material;
 
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "material_quantity_id")
-    private Material_quantity material_quantity;
+    @OneToMany
+    @JoinColumn(name = "building_id")
+    private Building building;
 }
