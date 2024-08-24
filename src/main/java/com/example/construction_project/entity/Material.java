@@ -10,21 +10,18 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name = "work_process")
+@Table(name = "materials")
 @NoArgsConstructor
-public class WorkProcess {
+public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Column(name = "action")
-    private String action;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "cost")
     private double cost;
-
-    @Column(name = "builder")
-    private String builder;
 }
