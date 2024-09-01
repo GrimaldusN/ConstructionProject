@@ -155,12 +155,6 @@
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>4.15.0</version>
-				<configuration>
-					<changeLogFile>src/main/resources/db/changelog/db.changelog-master.yaml</changeLogFile>
-					<url>jdbc:mysql://localhost:3306/construction_project</url>
-					<username>root</username>
-					<password>a2009300babych</password>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

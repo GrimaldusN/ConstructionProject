@@ -23,12 +23,12 @@ public class Material_quantity {
     private int quantity;
 
     @JsonIgnore
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "material_id")
     private Material material;
 
     @JsonIgnore
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "building_id")
     private Building building;
 }

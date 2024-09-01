@@ -17,8 +17,9 @@ public interface BuildingMapper {
     @Mapping(target = "owner.lastName", source = "lastName")
     @Mapping(target = "owner.tellNumber", source = "tellNumber")
     @Mapping(target = "name", source = "name")
-//    @Mapping(target = "material.name", source = "material_name")
+    @Mapping(target = "material_quantity.material.name", source = "material_name")
     @Mapping(target = "material_quantity.quantity", source = "material_quantity")
+    @Mapping(target = "material_quantity.building", ignore = true)
     Building toEntity(BuildingCreateDto buildingCreateDto);
 
     @AfterMapping
@@ -30,8 +31,8 @@ public interface BuildingMapper {
         building.setOwner(owner);
         Material_quantity materialQuantity = new Material_quantity();
         materialQuantity.setQuantity(buildingCreateDto.getMaterial_quantity());
-        materialQuantity.setBuilding(building);
-//        materialQuantity.setMaterial();
+        materialQuantity.setMaterial(building.getMaterial_quantity().getMaterial());
+        building.setMaterial_quantity(materialQuantity);
     }
 
     @Mapping(target ="buildingId", source = "id")
