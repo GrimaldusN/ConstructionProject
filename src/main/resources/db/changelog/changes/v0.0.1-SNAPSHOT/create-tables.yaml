@@ -231,6 +231,11 @@ databaseChangeLog:
                   type: DOUBLE
                   constraints:
                     nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
         - createIndex:
             tableName: buildings
             columns:
@@ -242,28 +247,6 @@ databaseChangeLog:
       id: 5
       author: Grim
       changes:
-        - addForeignKeyConstraint:
-            baseTableName: materials_quantity
-            baseColumnNames: material_id
-            constraintName: fk_material_quantity_material
-            referencedTableName: materials
-            referencedColumnNames: id
-        - addForeignKeyConstraint:
-            baseTableName: materials_quantity
-            baseColumnNames: building_id
-            constraintName: fk_material_quantity_building
-            referencedTableName: buildings
-            referencedColumnNames: id
-        - addForeignKeyConstraint:
-            baseTableName: buildings
-            baseColumnNames: id
-            constraintName: fk_buildings_owner
-            referencedTableName: owners
-            referencedColumnNames: id
-  - changeSet:
-      id: 7
-      author: Grim
-      changes:
         - addColumn:
             tableName: buildings
             columns:
@@ -272,4 +255,25 @@ databaseChangeLog:
                   type: binary(16)
                   constraints:
                     nullable: false
+              - column:
+                  name: material_quantity_id
+                  type: binary(16)
+                  constraints:
+                    nullable: false
 
+  - changeSet:
+      id: 7
+      author: Grim
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: buildings
+            baseColumnNames: material_quantity_id
+            constraintName: fk_buildings_materials_quantity
+            referencedTableName: materials_quantity
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: buildings
+            baseColumnNames: owner_id
+            constraintName: fk_buildings_owner
+            referencedTableName: owners
+            referencedColumnNames: id
