@@ -6,6 +6,7 @@ import com.example.construction_project.entity.User;
 import com.example.construction_project.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserController {
     private final UserServiceImpl userService;
+
+    private final PasswordEncoder passwordEncoder;
     @GetMapping
     public List<User> getAll(){
         return new ArrayList<>(userService.getAll());
@@ -25,6 +28,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserAfterCreationDto> createUser(@RequestBody UserCreateDto userCreateDto) {
         UserAfterCreationDto createdUser = userService.createUser(userCreateDto);
+        userCreateDto.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
         return ResponseEntity.ok(createdUser);
     }
 
