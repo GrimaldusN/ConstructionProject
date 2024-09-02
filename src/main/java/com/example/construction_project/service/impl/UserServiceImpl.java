@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Optional;
-=======
->>>>>>> origin/test
 import java.util.UUID;
 
 @Service
@@ -54,14 +51,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-<<<<<<< HEAD
     public Optional<User> findByLogin(String login) {
         return Optional.ofNullable(userRepository.findUserByLogin(login));
     }
 
     @Override
-=======
->>>>>>> origin/test
+
     public UserAfterCreationDto createUser(UserCreateDto userCreateDto) {
         User user = userRepository.findUserByLogin(userCreateDto.getLogin());
         if (user != null){
