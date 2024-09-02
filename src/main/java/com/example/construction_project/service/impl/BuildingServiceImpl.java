@@ -43,7 +43,6 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void deleteBuildingById(UUID id) {
         if (buildingRepository.findById(id).isEmpty()){
             throw new BuildingNotExistException(ErrorMessage.BUILDING_NOT_EXIST);
@@ -53,7 +52,6 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public BuildingAfterCreationDto createBuilding(BuildingCreateDto buildingCreateDto) {
         Building building = buildingRepository.getBuildingByName(buildingCreateDto.getName());
         if (building != null){

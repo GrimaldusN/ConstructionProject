@@ -12,6 +12,4 @@ public interface BuildingRepository extends JpaRepository<Building, UUID> {
     Building getBuildingById(UUID id);
     Building getBuildingByName(String name);
     void deleteBuildingById(UUID id);
-
-    Material findMaterialByName(String name);
 }
