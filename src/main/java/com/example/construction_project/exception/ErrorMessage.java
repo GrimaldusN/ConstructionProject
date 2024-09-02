@@ -11,4 +11,5 @@ public class ErrorMessage {
     public static final String USER_ALREADY_EXIST = "USER_ALREADY_EXIST";
     public static final String OWNER_ALREADY_EXIST = "OWNER_ALREADY_EXIST";
     public static final String OWNER_NOT_EXIST = "OWNER_NOT_EXIST";
+    public static final String MATERIAL_NOT_EXIST = "MATERIAL_NOT_EXIST";
 }
