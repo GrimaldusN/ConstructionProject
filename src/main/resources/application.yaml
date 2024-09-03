@@ -22,7 +22,9 @@ logging:
   level:
     root: warn
 
-
 server:
   port: 8080
 
+  jwttoken:
+    signing:
+      key: "Zmphc2tmYXNmbEtGS3NhamZramFzO2xtZmRjc2Fjamthc2MsO2xtbHNha2pkZnNhMjM0NTYgYXNmYXM="

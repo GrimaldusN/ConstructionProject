@@ -3,6 +3,9 @@ package com.example.construction_project.controller;
 import com.example.construction_project.dto.UserAfterCreationDto;
 import com.example.construction_project.dto.UserCreateDto;
 import com.example.construction_project.entity.User;
+import com.example.construction_project.security.model.JwtAuthenticationResponse;
+import com.example.construction_project.security.model.SignInRequest;
+import com.example.construction_project.security.AuthenticationService;
 import com.example.construction_project.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,8 @@ public class UserController {
     private final UserServiceImpl userService;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final AuthenticationService authenticationService;
     @GetMapping
     public List<User> getAll(){
         return new ArrayList<>(userService.getAll());
@@ -42,6 +47,11 @@ public class UserController {
     public ResponseEntity<Void> deleteUserById(@PathVariable("id") UUID id) {
         userService.deleteUserById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/login")
+    public JwtAuthenticationResponse login (@RequestBody SignInRequest request) {
+        return authenticationService.authenticate(request);
     }
 }
 
