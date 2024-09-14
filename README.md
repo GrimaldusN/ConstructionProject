@@ -5,11 +5,11 @@ these sites, as well as for communication with owners of construction sites.
 
 ### Structure of Construction Project
 
-![PhotoDependencyClasses](images/Project structure.png)
+![PhotoDependencyClasses](images/Project_structure.png)
 
 ### Database Diagram
 
-![PhotoDependencyClasses](images/Database structure.png)
+![PhotoDependencyClasses](images/Database_structure.png)
 
 ### Used technology stack in my web application:
 - Spring Boot:
