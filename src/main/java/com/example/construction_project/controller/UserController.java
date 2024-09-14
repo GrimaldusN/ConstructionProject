@@ -32,8 +32,8 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserAfterCreationDto> createUser(@RequestBody UserCreateDto userCreateDto) {
-        UserAfterCreationDto createdUser = userService.createUser(userCreateDto);
         userCreateDto.setPassword(passwordEncoder.encode(userCreateDto.getPassword()));
+        UserAfterCreationDto createdUser = userService.createUser(userCreateDto);
         return ResponseEntity.ok(createdUser);
     }
 
