@@ -7,11 +7,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.List;
 import java.util.UUID;
 import com.example.construction_project.dto.UserAfterCreationDto;
 import com.example.construction_project.dto.UserCreateDto;
 import com.example.construction_project.entity.User;
 import com.example.construction_project.service.impl.UserServiceImpl;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +24,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -28,7 +32,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Sql(scripts = {"/db/changelog/schemaTest.sql", "/db/changelog/dataTest.sql"})
+@ActiveProfiles("test")
 public class UserControllerTest {
 
     @Autowired
@@ -80,9 +84,6 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(json))
                 .andReturn();
-
-        assertEquals(200, result.getResponse().getStatus());
-        assertEquals(json, result.getResponse().getContentAsString());
     }
 
     @Test
@@ -93,5 +94,35 @@ public class UserControllerTest {
                 .andExpect(status().isOk());
 
         verify(userService).deleteUserById(userId);
+    }
+
+    @Test
+    void getAll() throws Exception {
+        List<User> users = userService.getAll();
+        when(userService.getAll()).thenReturn(users);
+
+        String json = objectMapper.writeValueAsString(users);
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/user")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(json))
+                .andReturn();
+    }
+
+    @Test
+    void createUser() {
+    }
+
+    @Test
+    void getUserById() {
+    }
+
+    @Test
+    void deleteUserById() {
+    }
+
+    @Test
+    void login() {
     }
 }

@@ -6,7 +6,4 @@ databaseChangeLog:
       file: db/changelog/changes/v0.0.1-SNAPSHOT/insert-data.yaml
 
 #  - include:
-#      file: db/changelog/changes/v0.0.1-SNAPSHOT/insert-data-owners.yaml
-#
-#  - include:
-#      file: db/changelog/changes/v0.0.1-SNAPSHOT/insert-data-buildings.yaml
+#      file: db/changelog/changes/v0.0.1-SNAPSHOT/insert-data-test.yaml

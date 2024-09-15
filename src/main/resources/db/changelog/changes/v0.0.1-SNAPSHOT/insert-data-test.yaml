@@ -1,0 +1,507 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: Grim
+      context: test
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440000' AS BINARY)"
+              - column:
+                  name: role_Name
+                  value: 'ROLE_USER'
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440001' AS BINARY)"
+              - column:
+                  name: role_Name
+                  value: 'ROLE_ADMIN'
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440002' AS BINARY)"
+              - column:
+                  name: role_Name
+                  value: 'ROLE_GUEST'
+
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440003' AS BINARY)"
+              - column:
+                  name: role_Name
+                  value: 'ROLE_MANAGER'
+
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440004' AS BINARY)"
+              - column:
+                  name: authority_Name
+                  value: 'READ_PRIVILEGE'
+
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440005' AS BINARY)"
+              - column:
+                  name: authority_Name
+                  value: 'WRITE_PRIVILEGE'
+
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440006' AS BINARY)"
+              - column:
+                  name: authority_Name
+                  value: 'DELETE_PRIVILEGE'
+
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440007' AS BINARY)"
+              - column:
+                  name: authority_Name
+                  value: 'UPDATE_PRIVILEGE'
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440008' AS BINARY)"
+              - column:
+                  name: login
+                  value: 'user1'
+              - column:
+                  name: password
+                  value: 'password1'
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440009' AS BINARY)"
+              - column:
+                  name: login
+                  value: 'user2'
+              - column:
+                  name: password
+                  value: 'password2'
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-44665544000a' AS BINARY)"
+              - column:
+                  name: login
+                  value: 'user3'
+              - column:
+                  name: password
+                  value: 'password3'
+
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-44665544000b' AS BINARY)"
+              - column:
+                  name: login
+                  value: 'user4'
+              - column:
+                  name: password
+                  value: 'password4'
+
+        - insert:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440000' AS BINARY)"
+              - column:
+                  name: authority_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440004' AS BINARY)"
+
+        - insert:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440001' AS BINARY)"
+              - column:
+                  name: authority_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440005' AS BINARY)"
+
+        - insert:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440002' AS BINARY)"
+              - column:
+                  name: authority_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440006' AS BINARY)"
+
+        - insert:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440003' AS BINARY)"
+              - column:
+                  name: authority_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440007' AS BINARY)"
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440008' AS BINARY)"
+              - column:
+                  name: role_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440000' AS BINARY)"
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440009' AS BINARY)"
+              - column:
+                  name: role_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440001' AS BINARY)"
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-44665544000a' AS BINARY)"
+              - column:
+                  name: role_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440002' AS BINARY)"
+
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-44665544000b' AS BINARY)"
+              - column:
+                  name: role_id
+                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440003' AS BINARY)"
+
+  - changeSet:
+      id: 11
+      author: Grim
+      context: test
+      changes:
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000a' AS BINARY)"
+              - column:
+                  name: name
+                  value: 'Wood'
+              - column:
+                  name: cost
+                  value: 50.0
+
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000b' AS BINARY)"
+              - column:
+                  name: name
+                  value: 'Steel'
+              - column:
+                  name: cost
+                  value: 120.0
+
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000c' AS BINARY)"
+              - column:
+                  name: name
+                  value: 'Concrete'
+              - column:
+                  name: cost
+                  value: 80.0
+
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000d' AS BINARY)"
+              - column:
+                  name: name
+                  value: 'Glass'
+              - column:
+                  name: cost
+                  value: 150.0
+
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000e' AS BINARY)"
+              - column:
+                  name: name
+                  value: 'Plastic'
+              - column:
+                  name: cost
+                  value: 30.0
+
+        - insert:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+              - column:
+                  name: quantity
+                  value: 100
+              - column:
+                  name: material_id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+              - column:
+                  name: building_id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+
+        - insert:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+              - column:
+                  name: quantity
+                  value: 200
+              - column:
+                  name: material_id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+              - column:
+                  name: building_id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+
+        - insert:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+              - column:
+                  name: quantity
+                  value: 150
+              - column:
+                  name: material_id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+              - column:
+                  name: building_id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+
+        - insert:
+            tableName: materials_quantity
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+              - column:
+                  name: quantity
+                  value: 300
+              - column:
+                  name: material_id
+                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+              - column:
+                  name: building_id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+
+        - insert:
+            tableName: owners
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+              - column:
+                  name: first_Name
+                  value: 'Alice'
+              - column:
+                  name: last_name
+                  value: 'Smith'
+              - column:
+                  name: tell_Number
+                  value: '555-1234'
+
+        - insert:
+            tableName: owners
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+              - column:
+                  name: first_Name
+                  value: 'Bob'
+              - column:
+                  name: last_name
+                  value: 'Johnson'
+              - column:
+                  name: tell_Number
+                  value: '555-5678'
+
+        - insert:
+            tableName: owners
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+              - column:
+                  name: first_Name
+                  value: 'Charlie'
+              - column:
+                  name: last_name
+                  value: 'Brown'
+              - column:
+                  name: tell_Number
+                  value: '555-8765'
+
+        - insert:
+            tableName: owners
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+              - column:
+                  name: first_Name
+                  value: 'Diana'
+              - column:
+                  name: last_name
+                  value: 'Miller'
+              - column:
+                  name: tell_Number
+                  value: '555-4321'
+
+  - changeSet:
+      id: 9
+      author: Grim
+      changes:
+        - insert:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+              - column:
+                  name: address
+                  value: '123 Main St'
+              - column:
+                  name: cost
+                  value: 250000.0
+              - column:
+                  name: name
+                  value: 'Skyline Heights'
+              - column:
+                  name: owner_id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+              - column:
+                  name: material_quantity_id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+
+        - insert:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+              - column:
+                  name: address
+                  value: '456 Elm St'
+              - column:
+                  name: cost
+                  value: 300000.0
+              - column:
+                  name: name
+                  value: 'Riverstone Plaza'
+              - column:
+                  name: owner_id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+              - column:
+                  name: material_quantity_id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+
+        - insert:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+              - column:
+                  name: address
+                  value: '789 Oak St'
+              - column:
+                  name: cost
+                  value: 275000.0
+              - column:
+                  name: name
+                  value: 'Cascade Towers'
+              - column:
+                  name: owner_id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+              - column:
+                  name: material_quantity_id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+
+        - insert:
+            tableName: buildings
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+              - column:
+                  name: address
+                  value: '101 Pine St'
+              - column:
+                  name: cost
+                  value: 350000.0
+              - column:
+                  name: name
+                  value: 'Golden Gate Residences'
+              - column:
+                  name: owner_id
+                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+              - column:
+                  name: material_quantity_id
+                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000d', '-', ''))"
