@@ -70,8 +70,6 @@ class BuildingControllerTest {
     void testDeleteBuildingById() throws Exception {
         UUID buildingId = UUID.randomUUID();
 
-        // No mocking needed for void methods
-
         mockMvc.perform(delete("/building/{id}", buildingId))
                 .andExpect(status().isOk());
     }
