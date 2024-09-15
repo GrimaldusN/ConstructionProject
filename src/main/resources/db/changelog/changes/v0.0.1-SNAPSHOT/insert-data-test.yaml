@@ -9,7 +9,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440000' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440000' USING binary) AS BINARY)"
               - column:
                   name: role_Name
                   value: 'ROLE_USER'
@@ -19,7 +19,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440001' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440001' USING binary) AS BINARY)"
               - column:
                   name: role_Name
                   value: 'ROLE_ADMIN'
@@ -29,7 +29,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440002' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440002' USING binary) AS BINARY)"
               - column:
                   name: role_Name
                   value: 'ROLE_GUEST'
@@ -39,7 +39,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440003' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440003' USING binary) AS BINARY)"
               - column:
                   name: role_Name
                   value: 'ROLE_MANAGER'
@@ -49,7 +49,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440004' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440004' USING binary) AS BINARY)"
               - column:
                   name: authority_Name
                   value: 'READ_PRIVILEGE'
@@ -59,7 +59,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440005' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440005' USING binary) AS BINARY)"
               - column:
                   name: authority_Name
                   value: 'WRITE_PRIVILEGE'
@@ -69,7 +69,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440006' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440006' USING binary) AS BINARY)"
               - column:
                   name: authority_Name
                   value: 'DELETE_PRIVILEGE'
@@ -79,7 +79,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440007' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440007' USING binary) AS BINARY)"
               - column:
                   name: authority_Name
                   value: 'UPDATE_PRIVILEGE'
@@ -89,7 +89,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440008' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440008' USING binary) AS BINARY)"
               - column:
                   name: login
                   value: 'user1'
@@ -102,7 +102,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440009' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440009' USING binary) AS BINARY)"
               - column:
                   name: login
                   value: 'user2'
@@ -115,7 +115,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-44665544000a' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
               - column:
                   name: login
                   value: 'user3'
@@ -128,7 +128,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-44665544000b' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
               - column:
                   name: login
                   value: 'user4'
@@ -141,80 +141,80 @@ databaseChangeLog:
             columns:
               - column:
                   name: role_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440000' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440000' USING binary) AS BINARY)"
               - column:
                   name: authority_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440004' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440004' USING binary) AS BINARY)"
 
         - insert:
             tableName: role_authority
             columns:
               - column:
                   name: role_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440001' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440001' USING binary) AS BINARY)"
               - column:
                   name: authority_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440005' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440005' USING binary) AS BINARY)"
 
         - insert:
             tableName: role_authority
             columns:
               - column:
                   name: role_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440002' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440002' USING binary) AS BINARY)"
               - column:
                   name: authority_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440006' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440006' USING binary) AS BINARY)"
 
         - insert:
             tableName: role_authority
             columns:
               - column:
                   name: role_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440003' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440003' USING binary) AS BINARY)"
               - column:
                   name: authority_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440007' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440007' USING binary) AS BINARY)"
 
         - insert:
             tableName: user_roles
             columns:
               - column:
                   name: user_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440008' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440008' USING binary) AS BINARY)"
               - column:
                   name: role_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440000' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440000' USING binary) AS BINARY)"
 
         - insert:
             tableName: user_roles
             columns:
               - column:
                   name: user_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440009' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440009' USING binary) AS BINARY)"
               - column:
                   name: role_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440001' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440001' USING binary) AS BINARY)"
 
         - insert:
             tableName: user_roles
             columns:
               - column:
                   name: user_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-44665544000a' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
               - column:
                   name: role_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440002' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440002' USING binary) AS BINARY)"
 
         - insert:
             tableName: user_roles
             columns:
               - column:
                   name: user_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-44665544000b' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
               - column:
                   name: role_id
-                  valueComputed: "CAST('850e8400-e29b-41d4-a716-446655440003' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('850e8400-e29b-41d4-a716-446655440003' USING binary) AS BINARY)"
 
   - changeSet:
       id: 11
@@ -226,7 +226,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000a' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('110e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
               - column:
                   name: name
                   value: 'Wood'
@@ -239,46 +239,20 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000b' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('110e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
               - column:
                   name: name
                   value: 'Steel'
               - column:
                   name: cost
-                  value: 120.0
+                  value: 100.0
 
         - insert:
             tableName: materials
             columns:
               - column:
                   name: id
-                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000c' AS BINARY)"
-              - column:
-                  name: name
-                  value: 'Concrete'
-              - column:
-                  name: cost
-                  value: 80.0
-
-        - insert:
-            tableName: materials
-            columns:
-              - column:
-                  name: id
-                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000d' AS BINARY)"
-              - column:
-                  name: name
-                  value: 'Glass'
-              - column:
-                  name: cost
-                  value: 150.0
-
-        - insert:
-            tableName: materials
-            columns:
-              - column:
-                  name: id
-                  valueComputed: "CAST('110e8400-e29b-41d4-a716-44665544000e' AS BINARY)"
+                  valueComputed: "CAST(CONVERT('110e8400-e29b-41d4-a716-44665544000c' USING binary) AS BINARY)"
               - column:
                   name: name
                   value: 'Plastic'
@@ -287,75 +261,101 @@ databaseChangeLog:
                   value: 30.0
 
         - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST(CONVERT('110e8400-e29b-41d4-a716-44665544000d' USING binary) AS BINARY)"
+              - column:
+                  name: name
+                  value: 'Glass'
+              - column:
+                  name: cost
+                  value: 70.0
+
+        - insert:
+            tableName: materials
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "CAST(CONVERT('110e8400-e29b-41d4-a716-44665544000e' USING binary) AS BINARY)"
+              - column:
+                  name: name
+                  value: 'Aluminum'
+              - column:
+                  name: cost
+                  value: 90.0
+
+        - insert:
             tableName: materials_quantity
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+                  valueComputed: "CAST(CONVERT('120e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
               - column:
                   name: quantity
                   value: 100
               - column:
                   name: material_id
-                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+                  valueComputed: "CAST(CONVERT('110e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
               - column:
                   name: building_id
-                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
 
         - insert:
             tableName: materials_quantity
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+                  valueComputed: "CAST(CONVERT('120e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
               - column:
                   name: quantity
                   value: 200
               - column:
                   name: material_id
-                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+                  valueComputed: "CAST(CONVERT('110e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
               - column:
                   name: building_id
-                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
 
         - insert:
             tableName: materials_quantity
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+                  valueComputed: "CAST(CONVERT('120e8400-e29b-41d4-a716-44665544000c' USING binary) AS BINARY)"
               - column:
                   name: quantity
                   value: 150
               - column:
                   name: material_id
-                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000c' USING binary) AS BINARY)"
               - column:
                   name: building_id
-                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000c' USING binary) AS BINARY)"
 
         - insert:
             tableName: materials_quantity
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+                  valueComputed: "CAST(CONVERT('120e8400-e29b-41d4-a716-44665544000d' USING binary) AS BINARY)"
               - column:
                   name: quantity
                   value: 300
               - column:
                   name: material_id
-                  valueComputed: "UNHEX(REPLACE('110e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000d' USING binary) AS BINARY)"
               - column:
                   name: building_id
-                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000d' USING binary) AS BINARY)"
 
         - insert:
             tableName: owners
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+                  valueComputed: "CAST(CONVERT('140e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
               - column:
                   name: first_Name
                   value: 'Alice'
@@ -371,7 +371,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+                  valueComputed: "CAST(CONVERT('140e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
               - column:
                   name: first_Name
                   value: 'Bob'
@@ -387,7 +387,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+                  valueComputed: "CAST(CONVERT('140e8400-e29b-41d4-a716-44665544000c' USING binary) AS BINARY)"
               - column:
                   name: first_Name
                   value: 'Charlie'
@@ -403,7 +403,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+                  valueComputed: "CAST(CONVERT('140e8400-e29b-41d4-a716-44665544000d' USING binary) AS BINARY)"
               - column:
                   name: first_Name
                   value: 'Diana'
@@ -423,7 +423,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
               - column:
                   name: address
                   value: '123 Main St'
@@ -435,17 +435,17 @@ databaseChangeLog:
                   value: 'Skyline Heights'
               - column:
                   name: owner_id
-                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+                  valueComputed: "CAST(CONVERT('140e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
               - column:
                   name: material_quantity_id
-                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000a', '-', ''))"
+                  valueComputed: "CAST(CONVERT('120e8400-e29b-41d4-a716-44665544000a' USING binary) AS BINARY)"
 
         - insert:
             tableName: buildings
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
               - column:
                   name: address
                   value: '456 Elm St'
@@ -457,17 +457,17 @@ databaseChangeLog:
                   value: 'Riverstone Plaza'
               - column:
                   name: owner_id
-                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+                  valueComputed: "CAST(CONVERT('140e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
               - column:
                   name: material_quantity_id
-                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000b', '-', ''))"
+                  valueComputed: "CAST(CONVERT('120e8400-e29b-41d4-a716-44665544000b' USING binary) AS BINARY)"
 
         - insert:
             tableName: buildings
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000c' USING binary) AS BINARY)"
               - column:
                   name: address
                   value: '789 Oak St'
@@ -479,17 +479,17 @@ databaseChangeLog:
                   value: 'Cascade Towers'
               - column:
                   name: owner_id
-                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+                  valueComputed: "CAST(CONVERT('140e8400-e29b-41d4-a716-44665544000c' USING binary) AS BINARY)"
               - column:
                   name: material_quantity_id
-                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000c', '-', ''))"
+                  valueComputed: "CAST(CONVERT('120e8400-e29b-41d4-a716-44665544000c' USING binary) AS BINARY)"
 
         - insert:
             tableName: buildings
             columns:
               - column:
                   name: id
-                  valueComputed: "UNHEX(REPLACE('130e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+                  valueComputed: "CAST(CONVERT('130e8400-e29b-41d4-a716-44665544000d' USING binary) AS BINARY)"
               - column:
                   name: address
                   value: '101 Pine St'
@@ -501,7 +501,7 @@ databaseChangeLog:
                   value: 'Golden Gate Residences'
               - column:
                   name: owner_id
-                  valueComputed: "UNHEX(REPLACE('140e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+                  valueComputed: "CAST(CONVERT('140e8400-e29b-41d4-a716-44665544000d' USING binary) AS BINARY)"
               - column:
                   name: material_quantity_id
-                  valueComputed: "UNHEX(REPLACE('120e8400-e29b-41d4-a716-44665544000d', '-', ''))"
+                  valueComputed: "CAST(CONVERT('120e8400-e29b-41d4-a716-44665544000d' USING binary) AS BINARY)"
