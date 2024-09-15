@@ -1,8 +1,8 @@
 package com.example.construction_project.dto;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class OwnerCreateDto {
     String firstName;
     String lastName;

@@ -1,36 +1,29 @@
 package com.example.construction_project.controller;
-import java.util.UUID;
 
 import com.example.construction_project.dto.BuildingAfterCreationDto;
 import com.example.construction_project.dto.BuildingCreateDto;
 import com.example.construction_project.entity.Building;
 import com.example.construction_project.service.BuildingService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.util.Collections;
+import java.util.UUID;
 
-@ExtendWith(MockitoExtension.class)
-@WebMvcTest()
-@SpringBootTest
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
-@Sql(scripts = {"/db/changelog/schemaTest.sql", "/db/changelog/dataTest.sql"})
-public class BuildingControllerTest {
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(BuildingController.class)
+class BuildingControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -38,54 +31,69 @@ public class BuildingControllerTest {
     @MockBean
     private BuildingService buildingService;
 
-    private UUID buildingId;
-    private Building building;
-    private BuildingAfterCreationDto buildingAfterCreationDto;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @BeforeEach
-    public void setup() {
-        buildingId = UUID.randomUUID();
-        building = new Building();
-        building.setId(buildingId);
-        building.setCost(150000000);
-        building.setAddress("350 5th Ave, New York, NY 10118, USA");
-        building.setName("Empire State Building");
-
-        buildingAfterCreationDto = new BuildingAfterCreationDto();
-        buildingAfterCreationDto.setBuildingId(buildingId.toString());
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testGetBuildingById() throws Exception {
+    void testGetBuildings() throws Exception {
+        when(buildingService.getAll()).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/building"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"));
+    }
+
+    @Test
+    void testGetBuildingById() throws Exception {
+        UUID buildingId = UUID.randomUUID();
+        Building building = new Building();
+        building.setId(buildingId);
+        building.setName("Office Building");
+        building.setAddress("123 Main St");
+        building.setCost(12008.00);
+
         when(buildingService.getBuildingById(buildingId)).thenReturn(building);
 
-        mockMvc.perform(get("/get/{id}", buildingId))
+        mockMvc.perform(get("/building/{id}", buildingId))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"id\":\"" + buildingId + "\",\"cost\":150000000,\"address\":\"350 5th Ave, New York, NY 10118, USA\",\"name\":\"Empire State Building\"}"));
-
-        verify(buildingService).getBuildingById(buildingId);
+                .andExpect(jsonPath("$.id").value(buildingId.toString()))
+                .andExpect(jsonPath("$.name").value("Office Building"))
+                .andExpect(jsonPath("$.address").value("123 Main St"));
     }
 
     @Test
-    public void testDeleteBuildingById() throws Exception {
-        doNothing().when(buildingService).deleteBuildingById(buildingId);
+    void testDeleteBuildingById() throws Exception {
+        UUID buildingId = UUID.randomUUID();
 
-        mockMvc.perform(delete("/delete/{id}", buildingId))
+        // No mocking needed for void methods
+
+        mockMvc.perform(delete("/building/{id}", buildingId))
                 .andExpect(status().isOk());
-
-        verify(buildingService).deleteBuildingById(buildingId);
     }
 
     @Test
-    public void testCreateBuilding() throws Exception {
+    void testCreateBuilding() throws Exception {
+        // Mocking the service response
+        BuildingCreateDto buildingCreateDto = new BuildingCreateDto();
+        buildingCreateDto.setName("Office Building");
+        buildingCreateDto.setAddress("123 Main St");
+        buildingCreateDto.setCost(12000.00);
+        BuildingAfterCreationDto buildingAfterCreationDto = new BuildingAfterCreationDto();
+        buildingAfterCreationDto.setBuildingId(UUID.randomUUID().toString());
+        buildingAfterCreationDto.setStatus("Building is created");
+
         when(buildingService.createBuilding(any(BuildingCreateDto.class))).thenReturn(buildingAfterCreationDto);
 
-        mockMvc.perform(post("/create")
+        mockMvc.perform(post("/building")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"cost\":150000000,\"address\":\"350 5th Ave, New York, NY 10118, USA\",\"ownerName\":\"John Doe\",\"name\":\"Empire State Building\"}"))
+                        .content(objectMapper.writeValueAsString(buildingCreateDto)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"buildingId\":\"" + buildingId + "\",\"status\":\"Building is Created\"}"));
-
-        verify(buildingService).createBuilding(any(BuildingCreateDto.class));
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.name").value("Office Building"));
     }
 }

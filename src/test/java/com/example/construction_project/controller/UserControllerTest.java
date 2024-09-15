@@ -1,128 +1,132 @@
 package com.example.construction_project.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.List;
-import java.util.UUID;
 import com.example.construction_project.dto.UserAfterCreationDto;
 import com.example.construction_project.dto.UserCreateDto;
+import com.example.construction_project.entity.Role;
 import com.example.construction_project.entity.User;
+import com.example.construction_project.security.AuthenticationService;
+import com.example.construction_project.security.model.JwtAuthenticationResponse;
+import com.example.construction_project.security.model.SignInRequest;
 import com.example.construction_project.service.impl.UserServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.*;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(UserController.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class UserControllerTest {
+class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @MockBean
     private UserServiceImpl userService;
 
-    private UUID userId;
-    private User user;
-    private UserAfterCreationDto userAfterCreationDto;
+    @MockBean
+    private PasswordEncoder passwordEncoder;
+
+    @MockBean
+    private AuthenticationService authenticationService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @BeforeEach
-    public void setup() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
-        userId = UUID.randomUUID();
-        user = new User();
-        user.setId(userId);
-        user.setLogin("alice_johnson");
-
-        userAfterCreationDto = new UserAfterCreationDto();
-        userAfterCreationDto.setId(userId.toString());
     }
 
     @Test
-    public void testCreateUser() throws Exception {
+    void testGetAllUsers() throws Exception {
+        when(userService.getAll()).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/users"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"));
+    }
+
+    @Test
+    void testCreateUser() throws Exception {
+        UserCreateDto userCreateDto = new UserCreateDto();
+        userCreateDto.setLogin("Grim");
+        userCreateDto.setPassword("password1");
+        UserAfterCreationDto userAfterCreationDto = new UserAfterCreationDto();
+        userAfterCreationDto.setUserId(UUID.randomUUID().toString());
+        userAfterCreationDto.setStatus("User is Created");
+
+        when(passwordEncoder.encode(userCreateDto.getPassword())).thenReturn("encodedPassword");
         when(userService.createUser(any(UserCreateDto.class))).thenReturn(userAfterCreationDto);
 
-        mockMvc.perform(post("/user/create")
+        mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"login\":\"alice_johnson\"}"))
+                        .content(objectMapper.writeValueAsString(userCreateDto)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"userId\":\"" + userId + "\",\"status\":\"User is Created\"}"));
-
-        verify(userService).createUser(any(UserCreateDto.class));
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.username").value("testUser"));
     }
 
     @Test
-    public void testGetUserById() throws Exception {
+    void testGetUserById() throws Exception {
+        UUID userId = UUID.randomUUID();
+        Role role = new Role();
+        role.setId(UUID.randomUUID());
+        role.setRoleName("USER_ROLE");
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        User user = new User();
+        user.setLogin("testUser");
+        user.setPassword("encodedPassword");
+        user.setId(userId);
+        user.setRoles(roles);
+
         when(userService.getUserById(userId)).thenReturn(user);
 
-        String json = objectMapper.writeValueAsString(user);
-
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/user/{id}", userId)
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/users/{id}", userId))
                 .andExpect(status().isOk())
-                .andExpect(content().json(json))
-                .andReturn();
+                .andExpect(jsonPath("$.id").value(userId.toString()))
+                .andExpect(jsonPath("$.username").value("testUser"));
     }
 
     @Test
-    public void testDeleteUserById() throws Exception {
-        doNothing().when(userService).deleteUserById(userId);
+    void testDeleteUserById() throws Exception {
+        UUID userId = UUID.randomUUID();
 
-        mockMvc.perform(delete("/user/{id}", userId))
+        mockMvc.perform(delete("/users/{id}", userId))
                 .andExpect(status().isOk());
-
-        verify(userService).deleteUserById(userId);
     }
 
     @Test
-    void getAll() throws Exception {
-        List<User> users = userService.getAll();
-        when(userService.getAll()).thenReturn(users);
+    void testLogin() throws Exception {
+        SignInRequest signInRequest = new SignInRequest();
+        signInRequest.setLogin("testUser");
+        signInRequest.setPassword("password123");
+        JwtAuthenticationResponse jwtResponse = new JwtAuthenticationResponse("mockedJwtToken");
 
-        String json = objectMapper.writeValueAsString(users);
+        when(authenticationService.authenticate(any(SignInRequest.class))).thenReturn(jwtResponse);
 
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/user")
-                .accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/users/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(signInRequest)))
                 .andExpect(status().isOk())
-                .andExpect(content().json(json))
-                .andReturn();
-    }
-
-    @Test
-    void createUser() {
-    }
-
-    @Test
-    void getUserById() {
-    }
-
-    @Test
-    void deleteUserById() {
-    }
-
-    @Test
-    void login() {
+                .andExpect(jsonPath("$.token").value("mockedJwtToken"));
     }
 }

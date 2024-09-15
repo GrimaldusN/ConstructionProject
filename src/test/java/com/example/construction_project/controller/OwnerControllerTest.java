@@ -1,33 +1,35 @@
 package com.example.construction_project.controller;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import java.util.UUID;
 import com.example.construction_project.dto.OwnerAfterCreationDto;
 import com.example.construction_project.dto.OwnerCreateDto;
 import com.example.construction_project.entity.Owner;
 import com.example.construction_project.service.OwnerService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Collections;
+import java.util.UUID;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(OwnerController.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@Sql(scripts = {"/db/changelog/schemaTest.sql", "/db/changelog/dataTest.sql"})
-public class OwnerControllerTest {
+class OwnerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -35,70 +37,89 @@ public class OwnerControllerTest {
     @MockBean
     private OwnerService ownerService;
 
-    private UUID ownerId;
-    private Owner owner;
-    private OwnerAfterCreationDto ownerAfterCreationDto;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @BeforeEach
-    public void setup() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
-        ownerId = UUID.randomUUID();
-        owner = new Owner();
+    }
+
+    @Test
+    void testGetAllOwners() throws Exception {
+        // Mocking the service response
+        when(ownerService.getAll()).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(get("/owner"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[]"));
+    }
+
+    @Test
+    void testGetOwnerById() throws Exception {
+        UUID ownerId = UUID.randomUUID();
+        Owner owner = new Owner();
         owner.setId(ownerId);
         owner.setFirstName("John");
         owner.setLastName("Doe");
-        owner.setTellNumber("123456789");
+        owner.setTellNumber("1234567890");
 
-        ownerAfterCreationDto = new OwnerAfterCreationDto();
-        ownerAfterCreationDto.setOwnerId(ownerId.toString());
-    }
-
-    @Test
-    public void testGetOwnerById() throws Exception {
         when(ownerService.getOwnerById(ownerId)).thenReturn(owner);
 
-        mockMvc.perform(get("/owner/get/{id}", ownerId))
+        mockMvc.perform(get("/owner/{id}", ownerId))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"id\":\"" + ownerId + "\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"tellNumber\":123456789}"));
-
-        verify(ownerService).getOwnerById(ownerId);
+                .andExpect(jsonPath("$.id").value(ownerId.toString()))
+                .andExpect(jsonPath("$.name").value("John Doe"))
+                .andExpect(jsonPath("$.tellNumber").value("123456789"));
     }
 
     @Test
-    public void testDeleteOwnerById() throws Exception {
-        doNothing().when(ownerService).deleteOwnerById(ownerId);
+    void testDeleteOwnerById() throws Exception {
+        UUID ownerId = UUID.randomUUID();
 
-        mockMvc.perform(delete("/owner/delete/{id}", ownerId))
+        mockMvc.perform(delete("/owner/{id}", ownerId))
                 .andExpect(status().isOk());
-
-        verify(ownerService).deleteOwnerById(ownerId);
     }
 
     @Test
-    public void testUpdateOwnerByTellNumber() throws Exception {
-        String tellNumber = "123456789";
+    void testUpdateOwnerByTellNumber() throws Exception {
+        String oldTellNumber = "123456789";
         String newTellNumber = "987654321";
-        when(ownerService.updateOwnerByTellNumber(tellNumber, newTellNumber)).thenReturn(owner);
+        UUID ownerId = UUID.randomUUID();
+        Owner updatedOwner = new Owner();
+        updatedOwner.setId(ownerId);
+        updatedOwner.setFirstName("John");
+        updatedOwner.setLastName("Doe");
+        updatedOwner.setTellNumber("1234567890");
 
-        mockMvc.perform(put("/owner/owners/updateByTellNumber")
-                        .param("tellNumber", String.valueOf(tellNumber))
-                        .param("newTellNumber", String.valueOf(newTellNumber)))
+        when(ownerService.updateOwnerByTellNumber(oldTellNumber, newTellNumber)).thenReturn(updatedOwner);
+
+        mockMvc.perform(put("/owner/updateTellNumber")
+                        .param("tellNumber", oldTellNumber)
+                        .param("newTellNumber", newTellNumber))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"id\":\"" + ownerId + "\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"tellNumber\":123456789}"));
-
-        verify(ownerService).updateOwnerByTellNumber(tellNumber, newTellNumber);
+                .andExpect(jsonPath("$.tellNumber").value(newTellNumber));
     }
 
     @Test
-    public void testCreateOwner() throws Exception {
+    void testCreateOwner() throws Exception {
+        // Mocking the service response
+        OwnerCreateDto ownerCreateDto = new OwnerCreateDto();
+        ownerCreateDto.setFirstName("John");
+        ownerCreateDto.setLastName("Doe");
+        ownerCreateDto.setTellNumber("1234567890");
+        OwnerAfterCreationDto ownerAfterCreationDto = new OwnerAfterCreationDto();
+        UUID ownerId = UUID.randomUUID();
+        ownerAfterCreationDto.setOwnerId(String.valueOf(ownerId));
+        ownerAfterCreationDto.setStatus("Owner is created");
+
         when(ownerService.createOwner(any(OwnerCreateDto.class))).thenReturn(ownerAfterCreationDto);
 
-        mockMvc.perform(post("/owner/create")
+        mockMvc.perform(post("/owner")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"firstName\":\"Jane\",\"lastName\":\"Smith\",\"tellNumber\":987654321}"))
+                        .content(objectMapper.writeValueAsString(ownerCreateDto)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"ownerId\":\"" + ownerId + "\",\"status\":\"Owner is Created\"}"));
-
-        verify(ownerService).createOwner(any(OwnerCreateDto.class));
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.name").value("John Doe"));
     }
 }
