@@ -71,6 +71,7 @@ public class BuildingServiceImpl implements BuildingService {
         if (material == null) {
             material = new Material();
             material.setName(buildingCreateDto.getMaterial_name());
+            material.setCost(buildingCreateDto.getCost());
             materialRepository.save(material);
         }
 
@@ -80,9 +81,9 @@ public class BuildingServiceImpl implements BuildingService {
         Building savedBuilding = buildingRepository.save(building);
 
         Material_quantity materialQuantity = new Material_quantity();
-        materialQuantity.setBuilding(savedBuilding);
         materialQuantity.setMaterial(material);
         materialQuantity.setQuantity(buildingCreateDto.getMaterial_quantity());
+        materialQuantity.setBuilding(savedBuilding);
 
         materialQuantityRepository.save(materialQuantity);
 
