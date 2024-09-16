@@ -22,19 +22,6 @@ public interface BuildingMapper {
     @Mapping(target = "material_quantity.building", ignore = true)
     Building toEntity(BuildingCreateDto buildingCreateDto);
 
-    @AfterMapping
-    default void createdOwnerInfo(@MappingTarget Building building, BuildingCreateDto buildingCreateDto){
-        Owner owner = new Owner();
-        owner.setFirstName(buildingCreateDto.getFirstName());
-        owner.setLastName(buildingCreateDto.getLastName());
-        owner.setTellNumber(buildingCreateDto.getTellNumber());
-        building.setOwner(owner);
-        Material_quantity materialQuantity = new Material_quantity();
-        materialQuantity.setQuantity(buildingCreateDto.getMaterial_quantity());
-        materialQuantity.setMaterial(building.getMaterial_quantity().getMaterial());
-        building.setMaterial_quantity(materialQuantity);
-    }
-
     @Mapping(target ="buildingId", source = "id")
     BuildingAfterCreationDto toDto(Building buildingAfterCreation);
 }

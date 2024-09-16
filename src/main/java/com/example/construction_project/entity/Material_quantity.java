@@ -23,7 +23,7 @@ public class Material_quantity {
     private int quantity;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "material_id")
     private Material material;
 

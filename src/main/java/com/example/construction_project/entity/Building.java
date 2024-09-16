@@ -27,7 +27,7 @@ public class Building {
     private String address;
 
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
@@ -35,7 +35,7 @@ public class Building {
     private String name;
 
     @JsonIgnore
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "material_quantity_id")
     private Material_quantity material_quantity;
 }

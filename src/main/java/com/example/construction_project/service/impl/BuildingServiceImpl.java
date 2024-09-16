@@ -3,16 +3,20 @@ package com.example.construction_project.service.impl;
 import com.example.construction_project.dto.BuildingAfterCreationDto;
 import com.example.construction_project.dto.BuildingCreateDto;
 import com.example.construction_project.entity.Building;
-import com.example.construction_project.exception.BuildingAlreadyExistException;
+import com.example.construction_project.entity.Material;
+import com.example.construction_project.entity.Material_quantity;
+import com.example.construction_project.entity.Owner;
 import com.example.construction_project.exception.BuildingNotExistException;
 import com.example.construction_project.exception.BuildingsEmpty;
 import com.example.construction_project.exception.ErrorMessage;
 import com.example.construction_project.mapper.BuildingMapper;
 import com.example.construction_project.repository.BuildingRepository;
+import com.example.construction_project.repository.MaterialQuantityRepository;
+import com.example.construction_project.repository.MaterialRepository;
+import com.example.construction_project.repository.OwnerRepository;
 import com.example.construction_project.service.BuildingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -23,6 +27,9 @@ import java.util.UUID;
 public class BuildingServiceImpl implements BuildingService {
     private final BuildingRepository buildingRepository;
     private final BuildingMapper buildingMapper;
+    private final MaterialQuantityRepository materialQuantityRepository;
+    private final MaterialRepository materialRepository;
+    private final OwnerRepository ownerRepository;
 
 
     @Override
@@ -52,13 +59,36 @@ public class BuildingServiceImpl implements BuildingService {
     }
 
     @Override
+    @Transactional
     public BuildingAfterCreationDto createBuilding(BuildingCreateDto buildingCreateDto) {
-        Building building = buildingRepository.getBuildingByName(buildingCreateDto.getName());
-        if (building != null){
-            throw new BuildingAlreadyExistException(ErrorMessage.BUILDING_ALREADY_EXIST);
+        Owner owner = new Owner();
+        owner.setFirstName(buildingCreateDto.getFirstName());
+        owner.setLastName(buildingCreateDto.getLastName());
+        owner.setTellNumber(buildingCreateDto.getTellNumber());
+        ownerRepository.save(owner);
+
+        Material material = materialRepository.findMaterialByName(buildingCreateDto.getMaterial_name());
+        if (material == null) {
+            material = new Material();
+            material.setName(buildingCreateDto.getMaterial_name());
+            materialRepository.save(material);
         }
-        Building entity = buildingMapper.toEntity(buildingCreateDto);
-        Building buildingAfterCreation = buildingRepository.save(entity);
-        return buildingMapper.toDto(buildingAfterCreation);
+
+        Building building = buildingMapper.toEntity(buildingCreateDto);
+        building.setOwner(owner);
+
+        Building savedBuilding = buildingRepository.save(building);
+
+        Material_quantity materialQuantity = new Material_quantity();
+        materialQuantity.setBuilding(savedBuilding);
+        materialQuantity.setMaterial(material);
+        materialQuantity.setQuantity(buildingCreateDto.getMaterial_quantity());
+
+        materialQuantityRepository.save(materialQuantity);
+
+        savedBuilding.setMaterial_quantity(materialQuantity);
+
+        buildingRepository.save(savedBuilding);
+        return buildingMapper.toDto(savedBuilding);
     }
 }
