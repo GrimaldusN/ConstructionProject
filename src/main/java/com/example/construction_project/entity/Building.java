@@ -35,7 +35,7 @@ public class Building {
     private String name;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "building", cascade = CascadeType.ALL)
     @JoinColumn(name = "material_quantity_id")
     private Material_quantity material_quantity;
 }
